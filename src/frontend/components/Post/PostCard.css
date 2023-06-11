@@ -1,0 +1,15 @@
+.post-card {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 10px;
+  border-radius: 1rem;
+}
+.post-info {
+  display: flex;
+  justify-content: space-around;
+}
+.post-info p {
+  margin: 0;
+}

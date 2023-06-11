@@ -1,13 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Home } from "./frontend/pages/Home/Home";
+import { makeServer } from "./server";
+import { Mockbee } from "./frontend/pages/Mockbee/Mockbee";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// Call make Server
+makeServer();
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [{ path: "/", element: <Home /> }],
+  },
+  {
+    path: "/mockman",
+    element: <Mockbee />,
+  },
+]);
+
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

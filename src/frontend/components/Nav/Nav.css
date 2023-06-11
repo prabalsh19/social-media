@@ -1,0 +1,9 @@
+.logo {
+  font-family: "Space Grotesk", sans-serif;
+  color: #a352fe;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
