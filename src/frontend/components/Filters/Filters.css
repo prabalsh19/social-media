@@ -1,0 +1,14 @@
+.filters-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  background-color: #6648fc;
+  color: white;
+  cursor: pointer;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.active {
+  font-weight: bolder;
+}
