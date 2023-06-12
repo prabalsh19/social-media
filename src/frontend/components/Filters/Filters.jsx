@@ -1,18 +1,21 @@
-import { useState } from "react";
 import "./Filters.css";
+import { useFeedContext } from "../../contexts/FeedContext/feedContext";
 export const Filters = () => {
-  const [trendingIsSelected, setTrendingIsSelected] = useState(true);
+  const {
+    state: { selectedCategory },
+    dispatch,
+  } = useFeedContext();
   return (
     <div className="filters-container">
       <span
-        className={trendingIsSelected ? "active" : ""}
-        onClick={() => setTrendingIsSelected(true)}
+        className={selectedCategory === "TRENDING" && "active"}
+        onClick={() => dispatch({ type: "CHANGE_SORT", payload: "TRENDING" })}
       >
         Trending
       </span>
       <span
-        className={trendingIsSelected ? "" : "active"}
-        onClick={() => setTrendingIsSelected(false)}
+        className={selectedCategory === "LATEST" && "active"}
+        onClick={() => dispatch({ type: "CHANGE_SORT", payload: "LATEST" })}
       >
         Latest
       </span>

@@ -1,12 +1,15 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
 import { Nav } from "./frontend/components/Nav/Nav";
+import { FeedContextProvider } from "./frontend/contexts/FeedContext/feedContext";
 
 function App() {
   return (
     <div className="App">
-      <Nav />
-      <Outlet />
+      <FeedContextProvider>
+        <Nav />
+        <Outlet />
+      </FeedContextProvider>
     </div>
   );
 }

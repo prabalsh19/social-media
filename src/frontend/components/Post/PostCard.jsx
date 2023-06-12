@@ -1,6 +1,13 @@
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import "./PostCard.css";
-export const PostCard = ({ fullName, _id, username, content, createdAt }) => {
+export const PostCard = ({
+  fullName,
+  _id,
+  username,
+  content,
+  createdAt,
+  likes: { likeCount },
+}) => {
   const date = new Date(createdAt);
   const longFormatDate = date.toLocaleDateString("en-US", {
     year: "numeric",
@@ -34,7 +41,7 @@ export const PostCard = ({ fullName, _id, username, content, createdAt }) => {
         />
         <small>{content}</small>
       </div>
-      <div className="post-actions"></div>
+      <div className="post-actions">{likeCount}</div>
     </div>
   );
 };

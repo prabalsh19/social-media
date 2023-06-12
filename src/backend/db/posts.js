@@ -9,7 +9,7 @@ export const posts = [
     content:
       "Must try of this week: Vada Pao from SK Vadewale in Pune. The taste is absolutely mind-boggling and fresh.",
     likes: {
-      likeCount: 0,
+      likeCount: 100,
       likedBy: [],
       dislikedBy: [],
     },
@@ -39,7 +39,7 @@ export const posts = [
     content:
       "Enjoying the beautiful sunset at the beach. Nature's wonders never cease to amaze me!",
     likes: {
-      likeCount: 0,
+      likeCount: 50,
       likedBy: [],
       dislikedBy: [],
     },
@@ -55,7 +55,7 @@ export const posts = [
     content:
       "Just finished reading an amazing book, highly recommended: 'The Power of Now' by Eckhart Tolle.",
     likes: {
-      likeCount: 0,
+      likeCount: 200,
       likedBy: [],
       dislikedBy: [],
     },
@@ -85,7 +85,7 @@ export const posts = [
     content:
       "Just had a fantastic workout session at the gym. Feeling pumped up and energized!",
     likes: {
-      likeCount: 0,
+      likeCount: 20,
       likedBy: [],
       dislikedBy: [],
     },
@@ -101,7 +101,7 @@ export const posts = [
     content:
       "Exploring the streets of Tokyo. The city is vibrant and full of life!",
     likes: {
-      likeCount: 0,
+      likeCount: 70,
       likedBy: [],
       dislikedBy: [],
     },
@@ -145,7 +145,7 @@ export const posts = [
     content:
       "Attended an amazing concert last night. The music was electrifying!",
     likes: {
-      likeCount: 0,
+      likeCount: 60,
       likedBy: [],
       dislikedBy: [],
     },
@@ -175,7 +175,7 @@ export const posts = [
     content:
       "Hiking up the mountains was an exhilarating experience. The view from the top was breathtaking!",
     likes: {
-      likeCount: 0,
+      likeCount: 80,
       likedBy: [],
       dislikedBy: [],
     },
@@ -192,7 +192,7 @@ export const posts = [
     content:
       "Cooked a delicious homemade pizza for dinner. It turned out better than expected!",
     likes: {
-      likeCount: 0,
+      likeCount: 52,
       likedBy: [],
       dislikedBy: [],
     },
@@ -222,7 +222,7 @@ export const posts = [
     content:
       "Celebrating my graduation with friends and family. A new chapter begins!",
     likes: {
-      likeCount: 0,
+      likeCount: 56,
       likedBy: [],
       dislikedBy: [],
     },

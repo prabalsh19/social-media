@@ -5,10 +5,11 @@
   position: sticky;
   top: 0;
   background-color: #6648fc;
-  color: white;
+  color: rgb(219, 219, 219);
   cursor: pointer;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .active {
+  color: white;
   font-weight: bolder;
 }
