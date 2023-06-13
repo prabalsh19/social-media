@@ -9,7 +9,7 @@
   cursor: pointer;
   box-shadow: var(--box-shadow);
 }
-.active {
+.activeCategory {
   color: white;
   font-weight: bolder;
 }

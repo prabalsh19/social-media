@@ -8,13 +8,13 @@ export const Filters = () => {
   return (
     <div className="filters-container">
       <span
-        className={selectedCategory === "LATEST" ? "active" : ""}
+        className={selectedCategory === "LATEST" ? "activeCategory" : ""}
         onClick={() => dispatch({ type: "CHANGE_SORT", payload: "LATEST" })}
       >
         Latest
       </span>
       <span
-        className={selectedCategory === "TRENDING" ? "active" : ""}
+        className={selectedCategory === "TRENDING" ? "activeCategory" : ""}
         onClick={() => dispatch({ type: "CHANGE_SORT", payload: "TRENDING" })}
       >
         Trending

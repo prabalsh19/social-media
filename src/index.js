@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from "./frontend/pages/Home/Home";
 import { makeServer } from "./server";
 import { Mockbee } from "./frontend/pages/Mockbee/Mockbee";
+import { Login } from "./frontend/pages/Login/Login";
 
 // Call make Server
 makeServer();
@@ -16,7 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [{ path: "/", element: <Home /> }],
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/login", element: <Login /> },
+    ],
   },
   {
     path: "/mockman",
