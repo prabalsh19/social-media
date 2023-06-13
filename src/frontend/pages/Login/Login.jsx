@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
 import { useState } from "react";
@@ -10,6 +10,7 @@ export const Login = () => {
   const { setIsLoggedIn, setUserDetails } = useLoginContext();
 
   const navigate = useNavigate();
+  const location = useLocation();
   const loginHandler = async (e) => {
     e.preventDefault();
     const response = await axios.post("/api/auth/login", {
@@ -20,7 +21,14 @@ export const Login = () => {
     setIsLoggedIn(true);
     setUserDetails(response.data.foundUser);
     localStorage.setItem("encodedToken", response.data.encodedToken);
-    navigate("/");
+    localStorage.setItem(
+      "userDetails",
+      JSON.stringify(response.data.foundUser)
+    );
+
+    location.state
+      ? navigate(location?.state?.location?.pathname)
+      : navigate("/");
   };
   const inputChangeHandler = (e) => {
     setLoginData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
