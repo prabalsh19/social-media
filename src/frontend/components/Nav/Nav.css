@@ -1,11 +1,11 @@
 .logo {
   font-family: "Space Grotesk", sans-serif;
-  color: #a352fe;
+  color: var(--secondary-color);
 }
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: var(--box-shadow);
   padding: 0 1rem;
 }

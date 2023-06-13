@@ -1,6 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
+:root {
+  --primary-color: white;
+  --secondary-color: #6648fc;
+  --black: #121212;
+  --faded-primary-color: rgb(219, 219, 219);
+  --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
 body {
   font-family: "Inter", sans-serif;
+  color: var(--black);
+}
+#hide {
+  display: none;
 }

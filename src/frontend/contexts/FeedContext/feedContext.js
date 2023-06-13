@@ -29,7 +29,7 @@ export const FeedContextProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, {
     posts: [],
-    selectedCategory: "TRENDING",
+    selectedCategory: "LATEST",
   });
   const sortedPost = [...state.posts].sort((a, b) =>
     state.selectedCategory === "TRENDING"

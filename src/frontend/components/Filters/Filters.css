@@ -4,10 +4,10 @@
   padding: 1rem 0;
   position: sticky;
   top: 0;
-  background-color: #6648fc;
-  color: rgb(219, 219, 219);
+  background-color: var(--secondary-color);
+  color: var(--faded-primary-color);
   cursor: pointer;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: var(--box-shadow);
 }
 .active {
   color: white;
