@@ -1,4 +1,3 @@
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./Nav.css";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 export const Nav = () => {

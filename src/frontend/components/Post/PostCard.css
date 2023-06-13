@@ -29,3 +29,13 @@
   width: 100%;
   border-radius: 10px;
 }
+.post-actions {
+  display: flex;
+  gap: 1rem;
+}
+.action {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}

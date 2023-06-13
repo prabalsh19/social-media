@@ -40,7 +40,7 @@ export const posts = [
       "Enjoying the beautiful sunset at the beach. Nature's wonders never cease to amaze me!",
     likes: {
       likeCount: 50,
-      likedBy: [],
+      likedBy: ["adarshbalika"],
       dislikedBy: [],
     },
     username: "sandy_beachlover",
