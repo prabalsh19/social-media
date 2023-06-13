@@ -14,6 +14,12 @@ const reducer = (state, action) => {
         selectedCategory: action.payload,
       };
     }
+    case "UPDATE_FEED": {
+      return {
+        ...state,
+        posts: action.payload,
+      };
+    }
     default:
       return state;
   }

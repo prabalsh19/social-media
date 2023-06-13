@@ -12,7 +12,7 @@ export const LoginContextProvider = ({ children }) => {
     const userDetailsFromLocal = localStorage.getItem("userDetails");
     if (encodedToken !== null) {
       setIsLoggedIn(true);
-      setUserDetails(JSON.stringify(userDetailsFromLocal));
+      setUserDetails(JSON.parse(userDetailsFromLocal));
       navigate("/");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

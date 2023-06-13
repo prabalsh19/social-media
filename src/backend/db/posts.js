@@ -45,7 +45,7 @@ export const posts = [
     },
     username: "sandy_beachlover",
     fullName: "Sandy Beachlover",
-    postImage: "https://source.unsplash.com/featured/300x20",
+    postImage: "https://source.unsplash.com/featured/300x202",
     createdAt: "2023-06-10",
     updatedAt: "2023-06-11",
     comments: [],
@@ -61,7 +61,7 @@ export const posts = [
     },
     username: "bookworm_23",
     fullName: "Bookworm 23",
-    postImage: "",
+    postImage: "https://source.unsplash.com/featured/300x203",
     createdAt: "2023-06-09",
     updatedAt: "2023-06-11",
     comments: [
@@ -91,7 +91,7 @@ export const posts = [
     },
     username: "fitness_freak",
     fullName: "Fitness Freak",
-    postImage: "https://source.unsplash.com/featured/300x20",
+    postImage: "https://source.unsplash.com/featured/300x204",
     createdAt: "2023-06-08",
     updatedAt: "2023-06-11",
     comments: [],
@@ -107,8 +107,7 @@ export const posts = [
     },
     username: "wanderlust_87",
     fullName: "Wanderlust 87",
-    postImage:
-      "https://res.cloudinary.com/dwebygldw/image/upload/v1653066367/frittr/tokyo-streets_hx8v5b.jpg",
+    postImage: "https://source.unsplash.com/featured/300x205",
     createdAt: "2023-06-07",
     updatedAt: "2023-06-11",
     comments: [
@@ -151,7 +150,7 @@ export const posts = [
     },
     username: "music_lover123",
     fullName: "Music Lover",
-    postImage: "",
+    postImage: "https://source.unsplash.com/featured/300x206",
     createdAt: "2023-06-06",
     updatedAt: "2023-06-11",
     comments: [
@@ -181,8 +180,7 @@ export const posts = [
     },
     username: "nature_lover22",
     fullName: "Nature Lover 22",
-    postImage:
-      "https://res.cloudinary.com/dwebygldw/image/upload/v1653066367/frittr/mountain-hike_z2vkom.jpg",
+    postImage: "https://source.unsplash.com/featured/300x207",
     createdAt: "2023-06-05",
     updatedAt: "2023-06-11",
     comments: [],
@@ -198,7 +196,7 @@ export const posts = [
     },
     username: "foodie_forever",
     fullName: "Foodie Forever",
-    postImage: "",
+    postImage: "https://source.unsplash.com/featured/300x208",
     createdAt: "2023-06-04",
     updatedAt: "2023-06-11",
     comments: [
@@ -228,8 +226,7 @@ export const posts = [
     },
     username: "graduation2023",
     fullName: "Graduation 2023",
-    postImage:
-      "https://res.cloudinary.com/dwebygldw/image/upload/v1653066367/frittr/graduation-celebration_rzwqyf.jpg",
+    postImage: "https://source.unsplash.com/featured/300x209",
     createdAt: "2023-06-03",
     updatedAt: "2023-06-11",
     comments: [],

@@ -2,7 +2,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import "./PostCard.css";
 export const PostCard = ({
   fullName,
-  _id,
+  postImage,
   username,
   content,
   createdAt,
@@ -14,6 +14,7 @@ export const PostCard = ({
     month: "short",
     day: "numeric",
   });
+
   return (
     <div className="post-card">
       <div className="post-info">
@@ -34,11 +35,7 @@ export const PostCard = ({
         </div>
       </div>
       <div className="post-text">
-        <img
-          className="post-img"
-          src={"https://source.unsplash.com/featured/300x20" + _id}
-          alt="post"
-        />
+        <img className="post-img" src={postImage} alt="post" />
         <small>{content}</small>
       </div>
       <div className="post-actions">{likeCount}</div>
