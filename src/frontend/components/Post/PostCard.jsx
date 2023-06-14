@@ -29,7 +29,9 @@ export const PostCard = ({
     day: "numeric",
   });
   const { userDetails, bookmarks, setBookmarks } = useLoginContext();
-  const [liked, setLiked] = useState(likedBy.includes(userDetails.username));
+  const [liked, setLiked] = useState(
+    likedBy.find((user) => user.username === userDetails.username)
+  );
   const [isBookmarked, setIsBookmarked] = useState(
     bookmarks.find((bookmark) => bookmark._id === _id)
   );
@@ -45,6 +47,7 @@ export const PostCard = ({
           headers: { authorization: encodedToken },
         }
       );
+      console.log(response);
       dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
     } catch (e) {
       console.error(e);
