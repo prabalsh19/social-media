@@ -3,7 +3,7 @@ input[type="file"] {
 }
 .create-btn {
   position: fixed;
-  bottom: 5%;
+  bottom: 10%;
   right: 10%;
 }
 

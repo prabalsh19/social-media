@@ -1,0 +1,14 @@
+.page-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--primary-color);
+  padding: 7px;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  justify-content: space-around;
+}
+.page-nav a {
+  color: inherit;
+}

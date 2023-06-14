@@ -31,7 +31,7 @@ export const PostCard = ({
   const { userDetails, bookmarks, setBookmarks } = useLoginContext();
   const [liked, setLiked] = useState(likedBy.includes(userDetails.username));
   const [isBookmarked, setIsBookmarked] = useState(
-    bookmarks.find((bookmark) => bookmark._id == _id)
+    bookmarks.find((bookmark) => bookmark._id === _id)
   );
 
   const likeHandler = async (_id) => {
