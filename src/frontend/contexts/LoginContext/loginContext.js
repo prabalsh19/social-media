@@ -6,10 +6,12 @@ const loginContext = createContext();
 export const LoginContextProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userDetails, setUserDetails] = useState({});
+  const [bookmarks, setBookmarks] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     const encodedToken = localStorage.getItem("encodedToken");
     const userDetailsFromLocal = localStorage.getItem("userDetails");
+
     if (encodedToken !== null) {
       setIsLoggedIn(true);
       setUserDetails(JSON.parse(userDetailsFromLocal));
@@ -22,6 +24,8 @@ export const LoginContextProvider = ({ children }) => {
     setIsLoggedIn,
     userDetails,
     setUserDetails,
+    bookmarks,
+    setBookmarks,
   };
   return (
     <loginContext.Provider value={value}>{children}</loginContext.Provider>

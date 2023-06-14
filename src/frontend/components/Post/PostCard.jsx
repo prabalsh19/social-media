@@ -3,6 +3,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 import "./PostCard.css";
 import axios from "axios";
 import { useFeedContext } from "../../contexts/FeedContext/feedContext";
@@ -27,8 +28,12 @@ export const PostCard = ({
     month: "short",
     day: "numeric",
   });
-  const { userDetails } = useLoginContext();
+  const { userDetails, bookmarks, setBookmarks } = useLoginContext();
   const [liked, setLiked] = useState(likedBy.includes(userDetails.username));
+  const [isBookmarked, setIsBookmarked] = useState(
+    bookmarks.find((bookmark) => bookmark._id == _id)
+  );
+
   const likeHandler = async (_id) => {
     setLiked(true);
     const encodedToken = localStorage.getItem("encodedToken");
@@ -63,6 +68,27 @@ export const PostCard = ({
   };
   const commentBtnHandler = () => {
     setShowCommentModal(true);
+  };
+  const addToBookmarkHandler = async () => {
+    setIsBookmarked(true);
+    const encodedToken = localStorage.getItem("encodedToken");
+    const response = await axios.post(
+      `/api/users/bookmark/${_id}`,
+      {},
+      { headers: { authorization: encodedToken } }
+    );
+
+    setBookmarks(response.data.bookmarks);
+  };
+  const removeFromBookmarkHandler = async () => {
+    setIsBookmarked(false);
+    const encodedToken = localStorage.getItem("encodedToken");
+    const response = await axios.post(
+      `/api/users/remove-bookmark/${_id}`,
+      {},
+      { headers: { authorization: encodedToken } }
+    );
+    setBookmarks(response.data.bookmarks);
   };
   return (
     <>
@@ -114,9 +140,15 @@ export const PostCard = ({
             </div>
           </div>
           <div className="action">
-            <span>
-              <BookmarkBorderIcon />
-            </span>
+            {isBookmarked ? (
+              <span onClick={removeFromBookmarkHandler}>
+                <BookmarkIcon />
+              </span>
+            ) : (
+              <span onClick={addToBookmarkHandler}>
+                <BookmarkBorderIcon />
+              </span>
+            )}
           </div>
         </div>
       </div>

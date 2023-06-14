@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useFeedContext } from "../../contexts/FeedContext/feedContext";
 import "./CommentModal.css";
-import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+// import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 export const CommentModal = ({ _id, setShowCommentModal }) => {
   const [selectedPost, setSelectedPost] = useState({});
   const { comments } = selectedPost || {};
   const {
     state: { posts },
   } = useFeedContext();
-  const { userDetails } = useLoginContext();
-  const { fullName } = userDetails;
+  //   const { userDetails } = useLoginContext();
+  //   const { fullName } = userDetails;
   useEffect(() => {
     setSelectedPost(() => posts.find((post) => post._id === _id));
   }, [posts, _id]);

@@ -17,7 +17,7 @@
 }
 .comment-heading {
   display: inline-block;
-  margin-top: 1rem;
+  margin: 1rem 0;
 }
 .comment__content {
   min-width: 10rem;
