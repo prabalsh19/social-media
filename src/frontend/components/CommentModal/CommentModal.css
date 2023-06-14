@@ -1,0 +1,50 @@
+.comment-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--primary-color);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  max-width: 30rem;
+}
+.comment {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.comment-heading {
+  display: inline-block;
+  margin-top: 1rem;
+}
+.comment__content {
+  min-width: 10rem;
+}
+.comment-input-container {
+  display: flex;
+  gap: 10px;
+}
+
+.comment-input-container input {
+  padding: 10px;
+  border-radius: 3rem 0 0 3rem;
+  border-right: none;
+  outline: none;
+  border: 1px solid black;
+  border-right: none;
+}
+.comment-input {
+  display: flex;
+  width: 100%;
+}
+.comment-input > button {
+  border-radius: 0 3rem 3rem 0;
+  border-left: none;
+  background-color: var(--primary-color);
+  outline: none;
+  border: 1px solid black;
+  border-left: none;
+  padding: 10px;
+}

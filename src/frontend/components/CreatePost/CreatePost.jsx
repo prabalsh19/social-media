@@ -49,6 +49,7 @@ export const CreatePost = () => {
           postImage: img,
           content: formData.caption,
           fullName: userDetails.fullName,
+          comments: [],
         },
       },
       {
@@ -58,6 +59,7 @@ export const CreatePost = () => {
       }
     );
     dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
+
     setShowModal(false);
     localStorage.removeItem("fileBase64");
     setPreviewImg("");

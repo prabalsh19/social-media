@@ -31,6 +31,10 @@
 }
 .post-actions {
   display: flex;
+  justify-content: space-between;
+}
+.post-actions-inner-container {
+  display: flex;
   gap: 1rem;
 }
 .action {
