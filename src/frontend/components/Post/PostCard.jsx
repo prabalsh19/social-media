@@ -51,7 +51,6 @@ export const PostCard = ({
           headers: { authorization: encodedToken },
         }
       );
-      console.log(response);
       dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
     } catch (e) {
       console.error(e);
@@ -97,7 +96,7 @@ export const PostCard = ({
     );
     setBookmarks(response.data.bookmarks);
   };
-  console.log(showMenuOptions);
+
   return (
     <>
       {showCommentModal && (
@@ -133,6 +132,7 @@ export const PostCard = ({
               <MoreHorizIcon />
               {showMenuOptions && (
                 <PostMenuOptions
+                  _id={_id}
                   username={username}
                   setShowEditPostModal={setShowEditPostModal}
                 />

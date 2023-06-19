@@ -63,6 +63,7 @@ export const CreatePost = () => {
     setShowModal(false);
     localStorage.removeItem("fileBase64");
     setPreviewImg("");
+    setFormData({ caption: "" });
   };
   return (
     <>
