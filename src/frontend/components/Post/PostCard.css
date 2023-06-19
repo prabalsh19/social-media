@@ -43,3 +43,6 @@
   gap: 5px;
   cursor: pointer;
 }
+.menu-icon {
+  position: relative;
+}

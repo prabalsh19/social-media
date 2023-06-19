@@ -1,0 +1,19 @@
+.menu-options {
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 10px;
+}
+.menu-options > span {
+  color: var(--primary-color);
+  text-align: center;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+.menu-options > span:hover {
+  background-color: var(--darker-secondary-color);
+  border-radius: inherit;
+}

@@ -13,7 +13,7 @@ export const Bookmarks = () => {
   const bookmarksList = posts.filter((post) =>
     bookmarks.some((id) => id === post._id)
   );
-  console.log(bookmarksList);
+
   useEffect(() => {
     const encodedToken = localStorage.getItem("encodedToken");
     try {

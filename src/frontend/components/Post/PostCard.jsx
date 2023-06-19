@@ -10,6 +10,8 @@ import { useFeedContext } from "../../contexts/FeedContext/feedContext";
 import { useState } from "react";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 import { CommentModal } from "../CommentModal/CommentModal";
+import { EditPost } from "../EditPost/EditPost";
+import { PostMenuOptions } from "../PostMenuOptions/PostMenuOptions";
 export const PostCard = ({
   _id,
   fullName,
@@ -21,6 +23,8 @@ export const PostCard = ({
   likes: { likeCount, likedBy },
 }) => {
   const [showCommentModal, setShowCommentModal] = useState(false);
+  const [showMenuOptions, setShowMenuOptions] = useState(false);
+  const [showEditPostModal, setShowEditPostModal] = useState(false);
   const { dispatch } = useFeedContext();
   const date = new Date(createdAt);
   const longFormatDate = date.toLocaleDateString("en-US", {
@@ -93,11 +97,20 @@ export const PostCard = ({
     );
     setBookmarks(response.data.bookmarks);
   };
+  console.log(showMenuOptions);
   return (
     <>
       {showCommentModal && (
         <CommentModal _id={_id} setShowCommentModal={setShowCommentModal} />
       )}
+      {showEditPostModal && (
+        <EditPost
+          _id={_id}
+          showEditPostModal={showEditPostModal}
+          setShowEditPostModal={setShowEditPostModal}
+        />
+      )}
+      <EditPost />
       <div className="post-card">
         <div className="post-info">
           <div className="post-info-subcontainer">
@@ -113,7 +126,18 @@ export const PostCard = ({
           </div>
           <div className="post-info-subcontainer">
             <small>{longFormatDate}</small>
-            <MoreHorizIcon />
+            <span
+              className="menu-icon"
+              onClick={() => setShowMenuOptions(!showMenuOptions)}
+            >
+              <MoreHorizIcon />
+              {showMenuOptions && (
+                <PostMenuOptions
+                  username={username}
+                  setShowEditPostModal={setShowEditPostModal}
+                />
+              )}
+            </span>
           </div>
         </div>
         <div className="post-text">
