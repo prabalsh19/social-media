@@ -10,6 +10,7 @@ import { Mockbee } from "./frontend/pages/Mockbee/Mockbee";
 import { Login } from "./frontend/pages/Login/Login";
 import { Auth } from "./frontend/Auth/Auth";
 import { Bookmarks } from "./frontend/pages/Bookmarks/Bookmarks";
+import { Profile } from "./frontend/pages/Profile/Profile";
 
 // Call make Server
 makeServer();
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       },
       { path: "/login", element: <Login /> },
       { path: "/bookmarks", element: <Bookmarks /> },
+      { path: "/profile", element: <Profile /> },
     ],
   },
   {
