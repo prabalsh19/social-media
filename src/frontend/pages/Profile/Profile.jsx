@@ -13,6 +13,7 @@ export const Profile = () => {
     day: "numeric",
   });
   const { sortedPost: posts } = useFeedContext();
+
   return (
     <div className="profile">
       <img
@@ -32,6 +33,7 @@ export const Profile = () => {
         <div className="profile-details-sub-container">
           <b>{userDetails.fullName}</b>
           <small>@{userDetails.username}</small>
+          <p>{userDetails.bio}</p>
         </div>
         <div className="follow-details">
           <span>{userDetails?.followers?.length} Followers</span>

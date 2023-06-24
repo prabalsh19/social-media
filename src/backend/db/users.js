@@ -12,6 +12,8 @@ export const users = [
     lastName: "Balika",
     username: "adarshbalika",
     password: "adarshBalika123",
+    fullName: "Adarsh Balika",
+    bio: "Life is what happens to you while you scroll through Instagram",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
