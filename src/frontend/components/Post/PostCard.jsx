@@ -25,6 +25,7 @@ export const PostCard = ({
   const [showCommentModal, setShowCommentModal] = useState(false);
   const [showMenuOptions, setShowMenuOptions] = useState(false);
   const [showEditPostModal, setShowEditPostModal] = useState(false);
+
   const { dispatch } = useFeedContext();
   const date = new Date(createdAt);
   const longFormatDate = date.toLocaleDateString("en-US", {
@@ -115,7 +116,11 @@ export const PostCard = ({
           <div className="post-info-subcontainer">
             <img
               className="profile-avatar"
-              src={`https://source.unsplash.com/random/?avatar,${fullName}`}
+              src={
+                userDetails.username === username
+                  ? userDetails.avatar
+                  : `https://source.unsplash.com/random/?avatar,${fullName}`
+              }
               alt="profile-avatar"
             />
             <div>

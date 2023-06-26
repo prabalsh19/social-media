@@ -30,8 +30,22 @@ const router = createBrowserRouter([
         ),
       },
       { path: "/login", element: <Login /> },
-      { path: "/bookmarks", element: <Bookmarks /> },
-      { path: "/profile", element: <Profile /> },
+      {
+        path: "/bookmarks",
+        element: (
+          <Auth>
+            <Bookmarks />
+          </Auth>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <Auth>
+            <Profile />
+          </Auth>
+        ),
+      },
     ],
   },
   {

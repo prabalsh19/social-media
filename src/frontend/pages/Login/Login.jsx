@@ -34,7 +34,7 @@ export const Login = () => {
     setLoginData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const guestLoginHandler = () => {
-    setLoginData({ username: "adarshbalika", password: "adarshBalika123" });
+    setLoginData({ username: "prabalsh19", password: "123456789" });
   };
   return (
     <form onSubmit={loginHandler}>

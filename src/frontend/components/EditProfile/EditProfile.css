@@ -1,0 +1,34 @@
+.edit-profile {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+  background-color: var(--primary-color);
+  box-shadow: var(--box-shadow);
+  border-radius: 1rem;
+  padding: 1rem;
+  min-width: 20rem;
+}
+.edit-profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.edit-profile-actions label {
+  display: inline-block;
+  width: 30%;
+}
+.edit-profile-action {
+  display: flex;
+}
+.save-btn {
+  padding: 10px 20px;
+  width: max-content;
+  margin-top: 10px;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+}
