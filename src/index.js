@@ -11,6 +11,7 @@ import { Login } from "./frontend/pages/Login/Login";
 import { Auth } from "./frontend/Auth/Auth";
 import { Bookmarks } from "./frontend/pages/Bookmarks/Bookmarks";
 import { Profile } from "./frontend/pages/Profile/Profile";
+import { Explore } from "./frontend/pages/Explore/Explore";
 
 // Call make Server
 makeServer();
@@ -43,6 +44,14 @@ const router = createBrowserRouter([
         element: (
           <Auth>
             <Profile />
+          </Auth>
+        ),
+      },
+      {
+        path: "/explore",
+        element: (
+          <Auth>
+            <Explore />
           </Auth>
         ),
       },
