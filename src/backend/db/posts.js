@@ -17,7 +17,8 @@ export const posts = [
     },
     username: "aditya_jadhav",
     fullName: "Aditya Jadhav",
-    postImage: "https://source.unsplash.com/featured/300x201",
+    postImage:
+      "https://images.unsplash.com/photo-1687173566424-751ee0f54c49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=327&q=80",
     createdAt: "2022-05-01",
     updatedAt: "2023-06-11",
     comments: [
@@ -47,7 +48,8 @@ export const posts = [
     },
     username: "sandy_beachlover",
     fullName: "Sandy Beachlover",
-    postImage: "https://source.unsplash.com/featured/300x202",
+    postImage:
+      "https://images.unsplash.com/photo-1687428959667-369ef891658a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     createdAt: "2023-06-10",
     updatedAt: "2023-06-11",
     comments: [],
@@ -63,7 +65,8 @@ export const posts = [
     },
     username: "bookworm_23",
     fullName: "Bookworm 23",
-    postImage: "https://source.unsplash.com/featured/300x203",
+    postImage:
+      "https://images.unsplash.com/photo-1560792523-9b3e98060a4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=394&q=80",
     createdAt: "2023-06-09",
     updatedAt: "2023-06-11",
     comments: [
@@ -93,7 +96,8 @@ export const posts = [
     },
     username: "fitness_freak",
     fullName: "Fitness Freak",
-    postImage: "https://source.unsplash.com/featured/300x204",
+    postImage:
+      "https://images.unsplash.com/photo-1585468274952-66591eb14165?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80",
     createdAt: "2023-06-08",
     updatedAt: "2023-06-11",
     comments: [],
@@ -109,7 +113,8 @@ export const posts = [
     },
     username: "wanderlust_87",
     fullName: "Wanderlust 87",
-    postImage: "https://source.unsplash.com/featured/300x205",
+    postImage:
+      "https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80",
     createdAt: "2023-06-07",
     updatedAt: "2023-06-11",
     comments: [
@@ -152,7 +157,8 @@ export const posts = [
     },
     username: "music_lover123",
     fullName: "Music Lover",
-    postImage: "https://source.unsplash.com/featured/300x206",
+    postImage:
+      "https://images.unsplash.com/photo-1687795975906-801167026fe2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     createdAt: "2023-06-06",
     updatedAt: "2023-06-11",
     comments: [
@@ -182,7 +188,8 @@ export const posts = [
     },
     username: "nature_lover22",
     fullName: "Nature Lover 22",
-    postImage: "https://source.unsplash.com/featured/300x207",
+    postImage:
+      "https://images.unsplash.com/photo-1687851898206-6636e30dcab1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     createdAt: "2023-06-05",
     updatedAt: "2023-06-11",
     comments: [],
@@ -198,7 +205,8 @@ export const posts = [
     },
     username: "foodie_forever",
     fullName: "Foodie Forever",
-    postImage: "https://source.unsplash.com/featured/300x208",
+    postImage:
+      "https://images.unsplash.com/photo-1687677363615-03802b082962?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
     createdAt: "2023-06-04",
     updatedAt: "2023-06-11",
     comments: [
@@ -228,7 +236,8 @@ export const posts = [
     },
     username: "graduation2023",
     fullName: "Graduation 2023",
-    postImage: "https://source.unsplash.com/featured/300x209",
+    postImage:
+      "https://images.unsplash.com/photo-1687463221023-02f259da7d77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
     createdAt: "2023-06-03",
     updatedAt: "2023-06-11",
     comments: [],

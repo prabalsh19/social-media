@@ -14,6 +14,7 @@ import { EditPost } from "../EditPost/EditPost";
 import { PostMenuOptions } from "../PostMenuOptions/PostMenuOptions";
 export const PostCard = ({
   _id,
+  id,
   fullName,
   postImage,
   username,
@@ -119,7 +120,7 @@ export const PostCard = ({
               src={
                 userDetails.username === username
                   ? userDetails.avatar
-                  : `https://source.unsplash.com/random/?avatar,${fullName}`
+                  : `https://picsum.photos/200/300?random=${id}`
               }
               alt="profile-avatar"
             />
