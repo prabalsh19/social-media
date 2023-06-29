@@ -59,7 +59,7 @@ export const Login = () => {
         <button>Login</button>
         <button onClick={guestLoginHandler}>Guest Login</button>
         <p>
-          Don't have an account? <NavLink>Signup</NavLink>
+          Don't have an account? <NavLink to={"/signup"}>Signup</NavLink>
         </p>
       </div>
     </form>

@@ -12,6 +12,7 @@ import { Auth } from "./frontend/Auth/Auth";
 import { Bookmarks } from "./frontend/pages/Bookmarks/Bookmarks";
 import { Profile } from "./frontend/pages/Profile/Profile";
 import { Explore } from "./frontend/pages/Explore/Explore";
+import { Signup } from "./frontend/pages/Signup/Signup";
 
 // Call make Server
 makeServer();
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
             <Explore />
           </Auth>
         ),
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
       },
     ],
   },

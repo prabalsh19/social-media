@@ -5,7 +5,7 @@ import { useFeedContext } from "../../contexts/FeedContext/feedContext";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 import "./Profile.css";
 export const Profile = () => {
-  const { userDetails } = useLoginContext();
+  const { userDetails, setIsLoggedIn, setUserDetails } = useLoginContext();
   const [showEditProfileModal, setShowEditProfileModal] = useState(false);
   const date = new Date(userDetails.createdAt);
   const dateString = date.toLocaleDateString("en-IN", {
@@ -14,7 +14,11 @@ export const Profile = () => {
     day: "numeric",
   });
   const { sortedPost: posts } = useFeedContext();
-
+  const logoutHandler = () => {
+    setIsLoggedIn(false);
+    setUserDetails({});
+    localStorage.clear();
+  };
   return (
     <div className="profile">
       {showEditProfileModal && (
@@ -27,12 +31,17 @@ export const Profile = () => {
       />
       <div className="profile-action">
         <img className="profile__avatar" src={userDetails.avatar} alt="" />
-        <button
-          className="profile-edit-btn"
-          onClick={() => setShowEditProfileModal(true)}
-        >
-          Edit Profile
-        </button>
+        <div>
+          <button
+            className="profile-edit-btn"
+            onClick={() => setShowEditProfileModal(true)}
+          >
+            Edit Profile
+          </button>
+          <button className="logout-btn" onClick={logoutHandler}>
+            Logout
+          </button>
+        </div>
       </div>
       <div className="profile-details">
         <div className="profile-details-sub-container">

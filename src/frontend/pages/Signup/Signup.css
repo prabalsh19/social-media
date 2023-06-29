@@ -1,0 +1,23 @@
+.signup-form {
+  display: flex;
+  justify-content: center;
+}
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+}
+.signup-container > input {
+  padding: 10px;
+}
+.signup-container > button {
+  padding: 10px 20px;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: none;
+  cursor: pointer;
+}
+.signup-container > a {
+  color: black;
+}

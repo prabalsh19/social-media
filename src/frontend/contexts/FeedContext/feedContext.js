@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
+import { useLoginContext } from "../LoginContext/loginContext";
 
 const FeedContext = createContext();
 
@@ -26,6 +27,7 @@ const reducer = (state, action) => {
 };
 
 export const FeedContextProvider = ({ children }) => {
+  const { userDetails } = useLoginContext();
   useEffect(() => {
     (async () => {
       const response = await axios.get("/api/posts");
@@ -37,7 +39,14 @@ export const FeedContextProvider = ({ children }) => {
     posts: [],
     selectedCategory: "LATEST",
   });
-  const sortedPost = [...state.posts].sort((a, b) =>
+  console.log(userDetails);
+  const filteredPost = state.posts.filter(
+    (post) =>
+      userDetails?.following?.some(
+        (following) => following.username === post.username
+      ) || post.username === userDetails.username
+  );
+  const sortedPost = [...filteredPost].sort((a, b) =>
     state.selectedCategory === "TRENDING"
       ? b.likes.likeCount - a.likes.likeCount
       : new Date(b.createdAt) - new Date(a.createdAt)
