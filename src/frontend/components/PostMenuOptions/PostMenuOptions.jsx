@@ -3,7 +3,7 @@ import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 import "./PostMenuOptions.css";
 import { useFeedContext } from "../../contexts/FeedContext/feedContext";
 export const PostMenuOptions = ({ _id, setShowEditPostModal, username }) => {
-  const { userDetails } = useLoginContext();
+  const { userDetails, setUserDetails } = useLoginContext();
   const { dispatch } = useFeedContext();
   const deletePostHandler = async (_id) => {
     const encodedToken = localStorage.getItem("encodedToken");
@@ -13,6 +13,32 @@ export const PostMenuOptions = ({ _id, setShowEditPostModal, username }) => {
 
     dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
   };
+  const userDoesFollow = userDetails.following.some(
+    (following) => following.username === username
+  );
+  const unfollowHandler = async (_id) => {
+    const encodedToken = localStorage.getItem("encodedToken");
+
+    const response = await axios.post(
+      `/api/users/unfollow/${_id}`,
+      {},
+      {
+        headers: { authorization: encodedToken },
+      }
+    );
+    setUserDetails(response.data.user);
+  };
+  const followHandler = async (_id) => {
+    const encodedToken = localStorage.getItem("encodedToken");
+    const response = await axios.post(
+      `/api/users/follow/${_id}`,
+      {},
+      {
+        headers: { authorization: encodedToken },
+      }
+    );
+    setUserDetails(response.data.user);
+  };
   return (
     <div className="menu-options">
       {userDetails.username === username ? (
@@ -20,8 +46,10 @@ export const PostMenuOptions = ({ _id, setShowEditPostModal, username }) => {
           <span onClick={() => setShowEditPostModal(true)}>Edit</span>
           <span onClick={() => deletePostHandler(_id)}>Delete</span>
         </>
+      ) : userDoesFollow ? (
+        <span onClick={() => unfollowHandler(_id)}>Unfollow</span>
       ) : (
-        <span>Unfollow</span>
+        <span onClick={() => followHandler(_id)}>Follow</span>
       )}
     </div>
   );
