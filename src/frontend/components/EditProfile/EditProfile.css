@@ -32,3 +32,6 @@
   border-radius: 1rem;
   cursor: pointer;
 }
+.avatar-options-wrapper {
+  position: relative;
+}

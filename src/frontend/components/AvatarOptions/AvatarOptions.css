@@ -1,0 +1,15 @@
+.avatar_options_avatar {
+  cursor: pointer;
+}
+.avatar-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+  align-items: center;
+  background-color: var(--faded-primary-color);
+  padding: 1rem;
+  box-shadow: var(--box-shadow);
+  position: absolute;
+  top: 2rem;
+  border-radius: 1rem;
+}

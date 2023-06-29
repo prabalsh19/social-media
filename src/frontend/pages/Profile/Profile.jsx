@@ -39,7 +39,9 @@ export const Profile = () => {
           <b>{userDetails.fullName}</b>
           <small>@{userDetails.username}</small>
           <p>{userDetails.bio}</p>
-          <a href={userDetails.portfolio}>{userDetails.portfolio}</a>
+          <a href={`https://${userDetails.portfolio}`}>
+            {userDetails.portfolio}
+          </a>
         </div>
         <div className="follow-details">
           <span>{userDetails?.followers?.length} Followers</span>

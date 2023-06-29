@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 import "./EditProfile.css";
 import { useState } from "react";
+
 export const EditProfile = ({ setShowEditProfileModal }) => {
   const { userDetails, setUserDetails } = useLoginContext();
   const [previewAvatar, setPreviewAvatar] = useState(userDetails.avatar);
@@ -32,11 +33,12 @@ export const EditProfile = ({ setShowEditProfileModal }) => {
   const fileUploadHandler = (e) => {
     const file = e.target.files[0];
     getBase64(file).then((base64) => {
-      setFormData((prev) => ({ ...prev, avatar: base64 }));
       localStorage.setItem("avatar", base64);
+      setFormData((prev) => ({ ...prev, avatar: base64 }));
       setPreviewAvatar(base64);
     });
   };
+
   const getBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -57,9 +59,12 @@ export const EditProfile = ({ setShowEditProfileModal }) => {
           <div className="edit-profile-actions">
             <div className="edit-profile-action">
               <label>Avatar</label>
+              <img className="profile-avatar" src={previewAvatar} alt="" />
+
               <label name="update-avatar">
-                <img className="profile-avatar" src={previewAvatar} alt="" />
-                <AddPhotoAlternateIcon />
+                <AddToPhotosIcon
+                  sx={{ color: "var(--secondary-color)", cursor: "pointer" }}
+                />
                 <input
                   name="update-avatar"
                   type="file"
@@ -87,6 +92,7 @@ export const EditProfile = ({ setShowEditProfileModal }) => {
             <div className="edit-profile-action">
               <label>Porfolio</label>
               <input
+                placeholder="www.example.com"
                 value={formData.portfolio}
                 onChange={(e) => updatePortfolio(e)}
                 type="text"
