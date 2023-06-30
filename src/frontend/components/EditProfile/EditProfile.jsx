@@ -3,11 +3,13 @@ import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 import "./EditProfile.css";
 import { useState } from "react";
-
+import { AvatarOptions } from "../AvatarOptions/AvatarOptions";
+import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 export const EditProfile = ({ setShowEditProfileModal }) => {
   const { userDetails, setUserDetails } = useLoginContext();
   const [previewAvatar, setPreviewAvatar] = useState(userDetails.avatar);
   const [formData, setFormData] = useState(userDetails);
+  const [showAvatars, setShowAvatars] = useState(false);
   const updateBio = (e) => {
     setFormData((prev) => ({ ...prev, bio: e.target.value }));
   };
@@ -72,6 +74,22 @@ export const EditProfile = ({ setShowEditProfileModal }) => {
                   onChange={(e) => fileUploadHandler(e)}
                 />
               </label>
+              <span
+                className="avatar-options-wrapper"
+                onClick={() => setShowAvatars((prev) => !prev)}
+              >
+                <SupervisedUserCircleIcon
+                  fontSize="large"
+                  sx={{ color: "var(--secondary-color)" }}
+                />
+                <small>Avatars</small>
+                {showAvatars && (
+                  <AvatarOptions
+                    setFormData={setFormData}
+                    setPreviewAvatar={setPreviewAvatar}
+                  />
+                )}
+              </span>
             </div>
             <div className="edit-profile-action">
               <label>Name</label>
