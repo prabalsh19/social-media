@@ -21,3 +21,6 @@
 .signup-container > a {
   color: black;
 }
+.show-password {
+  text-align: start;
+}

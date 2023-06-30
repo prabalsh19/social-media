@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "./Signup.css";
 import axios from "axios";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+
 export const Signup = () => {
   const [signupData, setSignupData] = useState({
     firstName: "",
@@ -11,6 +12,10 @@ export const Signup = () => {
     username: "",
     password: "",
     confirmPassword: "",
+  });
+  const [showPasswords, setShowPasswords] = useState({
+    password: false,
+    confirmPassword: false,
   });
   const { setIsLoggedIn, setUserDetails } = useLoginContext();
   const inputChangeHandler = (e) => {
@@ -28,6 +33,12 @@ export const Signup = () => {
       JSON.stringify(response.data.createdUser)
     );
     navigate("/");
+  };
+  const setShowPasswordsHandler = (e) => {
+    setShowPasswords((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.checked,
+    }));
   };
   return (
     <form className="signup-form" onSubmit={submitHandler} autoComplete="off">
@@ -65,22 +76,41 @@ export const Signup = () => {
           placeholder="Username"
           required
         />
+
         <input
-          type="password"
+          type={showPasswords.password ? "text" : "password"}
           value={signupData.password}
           onChange={(e) => inputChangeHandler(e)}
           name="password"
           placeholder="Password"
           required
         />
+        <div className="show-password">
+          <input
+            value={showPasswords.password}
+            type="checkbox"
+            onChange={(e) => setShowPasswordsHandler(e)}
+            name="password"
+          />
+          <label htmlFor="">Show Password</label>
+        </div>
         <input
-          type="password"
+          type={showPasswords.confirmPassword ? "text" : "password"}
           value={signupData.confirmPassword}
           onChange={(e) => inputChangeHandler(e)}
           name="confirmPassword"
           placeholder="Confirm Password"
           required
         />
+        <div className="show-password">
+          <input
+            value={showPasswords.confirmPassword}
+            onChange={(e) => setShowPasswordsHandler(e)}
+            type="checkbox"
+            name="confirmPassword"
+          />
+          <label htmlFor="">Show Confirm Password</label>
+        </div>
         <button>Signup</button>
         <p>
           Already have an account? <NavLink to={"/login"}>Login</NavLink>
