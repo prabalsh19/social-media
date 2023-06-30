@@ -6,9 +6,10 @@ import { useFeedContext } from "../../contexts/FeedContext/feedContext";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 
 export const EditPost = ({ _id, showEditPostModal, setShowEditPostModal }) => {
-  const [formData, setFormData] = useState({ caption: "" });
-  const [previewImg, setPreviewImg] = useState("");
-  const { dispatch } = useFeedContext();
+  const { state, dispatch } = useFeedContext();
+  const selectedPost = state.posts.find((post) => post._id === _id);
+  const [formData, setFormData] = useState({ caption: selectedPost?.content });
+  const [previewImg, setPreviewImg] = useState(selectedPost?.postImage);
   const { userDetails } = useLoginContext();
   const fileUploadHandler = (e) => {
     const file = e.target.files[0];
@@ -60,6 +61,7 @@ export const EditPost = ({ _id, showEditPostModal, setShowEditPostModal }) => {
     setPreviewImg("");
     setShowEditPostModal(false);
   };
+
   return (
     <>
       <div
