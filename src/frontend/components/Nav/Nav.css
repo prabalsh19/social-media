@@ -1,7 +1,11 @@
+nav > a {
+  text-decoration: none;
+}
 .logo {
   font-family: "Space Grotesk", sans-serif;
   color: var(--secondary-color);
 }
+
 .nav {
   display: flex;
   align-items: center;

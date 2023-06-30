@@ -6,7 +6,9 @@ export const Nav = () => {
 
   return (
     <nav className="nav">
-      <h1 className="logo">SOCIALS</h1>
+      <NavLink to={"/"}>
+        <h1 className="logo">SOCIALS</h1>
+      </NavLink>
       {isLoggedIn && (
         <NavLink to="/profile">
           <img className="profile-avatar" src={userDetails.avatar} alt="" />

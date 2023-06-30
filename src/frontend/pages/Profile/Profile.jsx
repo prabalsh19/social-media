@@ -20,7 +20,7 @@ export const Profile = () => {
     localStorage.clear();
   };
   return (
-    <div className="profile">
+    <div className="profile-container">
       {showEditProfileModal && (
         <EditProfile setShowEditProfileModal={setShowEditProfileModal} />
       )}

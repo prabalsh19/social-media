@@ -8,6 +8,7 @@
   box-shadow: var(--box-shadow);
   display: flex;
   justify-content: space-around;
+  max-height: 2rem;
 }
 .page-nav a {
   color: inherit;
