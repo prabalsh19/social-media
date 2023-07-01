@@ -33,7 +33,32 @@ export const Profile = () => {
       setSelectedUser(response.data.user);
     })();
   }, [_id, userDetails]);
+  const userFollowsThisProfile = userDetails.following.some(
+    (user) => user.username === selectedUser.username
+  );
+  const followHandler = async (_id) => {
+    const encodedToken = localStorage.getItem("encodedToken");
+    const response = await axios.post(
+      `/api/users/follow/${_id}`,
+      {},
+      {
+        headers: { authorization: encodedToken },
+      }
+    );
+    setUserDetails(response.data.user);
+  };
+  const unfollowHandler = async (_id) => {
+    const encodedToken = localStorage.getItem("encodedToken");
 
+    const response = await axios.post(
+      `/api/users/unfollow/${_id}`,
+      {},
+      {
+        headers: { authorization: encodedToken },
+      }
+    );
+    setUserDetails(response.data.user);
+  };
   return (
     <>
       {selectedUser._id && (
@@ -52,7 +77,7 @@ export const Profile = () => {
               src={selectedUser.avatar || defaultProfile}
               alt=""
             />
-            {selectedUser.username === userDetails.username && (
+            {selectedUser.username === userDetails.username ? (
               <div>
                 <button
                   className="profile-edit-btn"
@@ -64,6 +89,20 @@ export const Profile = () => {
                   Logout
                 </button>
               </div>
+            ) : userFollowsThisProfile ? (
+              <button
+                className="profile-edit-btn"
+                onClick={() => unfollowHandler(_id)}
+              >
+                Unfollow
+              </button>
+            ) : (
+              <button
+                className="profile-edit-btn"
+                onClick={() => followHandler(_id)}
+              >
+                Follow
+              </button>
             )}
           </div>
 
