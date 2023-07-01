@@ -1,6 +1,7 @@
 import "./Nav.css";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 import { NavLink } from "react-router-dom";
+import { defaultProfile } from "../../utils/constants";
 export const Nav = () => {
   const { userDetails, isLoggedIn } = useLoginContext();
 
@@ -11,7 +12,11 @@ export const Nav = () => {
       </NavLink>
       {isLoggedIn && (
         <NavLink to={`/profile/${userDetails._id}`}>
-          <img className="profile-avatar" src={userDetails.avatar} alt="" />
+          <img
+            className="profile-avatar"
+            src={userDetails.avatar || defaultProfile}
+            alt=""
+          />
         </NavLink>
       )}
     </nav>

@@ -21,6 +21,8 @@ export const posts = [
       "https://images.unsplash.com/photo-1687173566424-751ee0f54c49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=327&q=80",
     createdAt: "2022-05-01",
     updatedAt: "2023-06-11",
+    avatar:
+      "https://pbs.twimg.com/profile_images/1629104062225604613/ptbp3IWg_400x400.jpg",
     comments: [
       {
         _id: "1",
@@ -48,6 +50,8 @@ export const posts = [
     },
     username: "emmajay23",
     fullName: "Emma Johnson",
+    avatar:
+      "https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80",
     postImage:
       "https://images.unsplash.com/photo-1687428959667-369ef891658a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     createdAt: "2023-06-10",
@@ -65,6 +69,8 @@ export const posts = [
     },
     username: "mikebrown84",
     fullName: "Michael Brown",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     postImage:
       "https://images.unsplash.com/photo-1560792523-9b3e98060a4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=394&q=80",
     createdAt: "2023-06-09",
@@ -96,6 +102,9 @@ export const posts = [
     },
     username: "sophiadavis19",
     fullName: "Sophia Davis",
+
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
     postImage:
       "https://images.unsplash.com/photo-1585468274952-66591eb14165?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80",
     createdAt: "2023-06-08",
@@ -113,6 +122,9 @@ export const posts = [
     },
     username: "owilson",
     fullName: "Oliver Wilson",
+
+    avatar:
+      "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     postImage:
       "https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80",
     createdAt: "2023-06-07",
@@ -157,6 +169,9 @@ export const posts = [
     },
     username: "owilson",
     fullName: "Oliver Wilson",
+
+    avatar:
+      "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     postImage:
       "https://images.unsplash.com/photo-1687795975906-801167026fe2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     createdAt: "2023-06-06",
@@ -188,6 +203,9 @@ export const posts = [
     },
     username: "sophiadavis19",
     fullName: "Sophia Davis",
+
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
     postImage:
       "https://images.unsplash.com/photo-1687851898206-6636e30dcab1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     createdAt: "2023-06-05",
@@ -205,6 +223,8 @@ export const posts = [
     },
     username: "mikebrown84",
     fullName: "Michael Brown",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     postImage:
       "https://images.unsplash.com/photo-1687677363615-03802b082962?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
     createdAt: "2023-06-04",
@@ -236,6 +256,8 @@ export const posts = [
     },
     username: "mikebrown84",
     fullName: "Michael Brown",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     postImage:
       "https://images.unsplash.com/photo-1687463221023-02f259da7d77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
     createdAt: "2023-06-03",

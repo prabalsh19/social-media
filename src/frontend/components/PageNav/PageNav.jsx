@@ -8,6 +8,8 @@ import "./PageNav.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+import { defaultProfile } from "../../utils/constants";
+
 export const PageNav = () => {
   const [active, setActive] = useState("HOME");
   const { userDetails } = useLoginContext();
@@ -34,18 +36,17 @@ export const PageNav = () => {
           <BookmarkBorderOutlinedIcon sx={{ fontSize: "1.9rem" }} />
         )}
       </NavLink>
-      {userDetails.avatar && (
-        <NavLink
-          onClick={() => setActive("PROFILE")}
-          to={`/profile/${userDetails._id}`}
-        >
-          <img
-            className="nav__profile-avatar"
-            src={userDetails.avatar}
-            alt=""
-          />
-        </NavLink>
-      )}
+
+      <NavLink
+        onClick={() => setActive("PROFILE")}
+        to={`/profile/${userDetails._id}`}
+      >
+        <img
+          className="nav__profile-avatar"
+          src={userDetails.avatar || defaultProfile}
+          alt=""
+        />
+      </NavLink>
     </div>
   );
 };

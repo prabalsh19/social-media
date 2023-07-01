@@ -1,5 +1,4 @@
-import { useState, useContext, createContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext, createContext } from "react";
 
 const loginContext = createContext();
 
@@ -7,18 +6,7 @@ export const LoginContextProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userDetails, setUserDetails] = useState({});
   const [bookmarks, setBookmarks] = useState([]);
-  const navigate = useNavigate();
-  useEffect(() => {
-    const encodedToken = localStorage.getItem("encodedToken");
-    const userDetailsFromLocal = localStorage.getItem("userDetails");
-
-    if (encodedToken !== null) {
-      setIsLoggedIn(true);
-      setUserDetails(JSON.parse(userDetailsFromLocal));
-      navigate("/");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  console.log(userDetails);
   const value = {
     isLoggedIn,
     setIsLoggedIn,

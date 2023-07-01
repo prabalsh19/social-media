@@ -12,6 +12,7 @@ import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 import { CommentModal } from "../CommentModal/CommentModal";
 import { EditPost } from "../EditPost/EditPost";
 import { PostMenuOptions } from "../PostMenuOptions/PostMenuOptions";
+import { defaultProfile } from "../../utils/constants";
 export const PostCard = ({
   _id,
   id,
@@ -21,6 +22,7 @@ export const PostCard = ({
   content,
   createdAt,
   comments,
+  avatar,
   likes: { likeCount, likedBy },
 }) => {
   const [showCommentModal, setShowCommentModal] = useState(false);
@@ -98,7 +100,7 @@ export const PostCard = ({
     );
     setBookmarks(response.data.bookmarks);
   };
-
+  const loggedInUserPost = username === userDetails.username;
   return (
     <>
       {showCommentModal && (
@@ -118,9 +120,7 @@ export const PostCard = ({
             <img
               className="profile-avatar"
               src={
-                userDetails.username === username
-                  ? userDetails.avatar
-                  : `https://picsum.photos/200/300?random=${id}`
+                loggedInUserPost ? userDetails.avatar : avatar || defaultProfile
               }
               alt="profile-avatar"
             />

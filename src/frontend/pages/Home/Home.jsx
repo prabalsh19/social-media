@@ -8,20 +8,18 @@ import { FollowSuggestion } from "../../components/FollowSuggestion/FollowSugges
 export const Home = () => {
   const { sortedPost: posts } = useFeedContext();
 
-  return posts.length === 0 ? (
-    <>
-      <h1>No Posts</h1>
-    </>
-  ) : (
+  return (
     <>
       <div className="outlet-container">
         <Filters />
         <div className="home-container">
           <CreatePost />
           <FollowSuggestion />
-          {posts.map((post) => (
-            <PostCard key={post.id} {...post} />
-          ))}
+          {posts.length === 0 ? (
+            <h1>No Posts</h1>
+          ) : (
+            posts.map((post) => <PostCard key={post.id} {...post} />)
+          )}
         </div>
       </div>
     </>

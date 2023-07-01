@@ -91,15 +91,15 @@ export const CreatePost = () => {
             />
             Add Image
           </label>
-          <input
+
+          <textarea
             className="caption-container"
-            type="text"
             placeholder="Caption"
             value={formData.caption}
             onChange={(e) =>
               setFormData((prev) => ({ ...prev, caption: e.target.value }))
             }
-          />
+          ></textarea>
           <button className="post-btn">POST</button>
         </div>
       </form>

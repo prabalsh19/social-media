@@ -7,5 +7,6 @@
     border: 2px solid rgb(239, 243, 244);
     border-right: none;
     border-top: none;
+    width: 100%;
   }
 }

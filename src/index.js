@@ -13,6 +13,8 @@ import { Bookmarks } from "./frontend/pages/Bookmarks/Bookmarks";
 import { Profile } from "./frontend/pages/Profile/Profile";
 import { Explore } from "./frontend/pages/Explore/Explore";
 import { Signup } from "./frontend/pages/Signup/Signup";
+import { LoginContextProvider } from "./frontend/contexts/LoginContext/loginContext";
+import { FeedContextProvider } from "./frontend/contexts/FeedContext/feedContext";
 // Call make Server
 makeServer();
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -55,25 +57,29 @@ const router = createBrowserRouter([
           </Auth>
         ),
       },
-      {
-        path: "/signup",
-        element: <Signup />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
     ],
   },
   {
     path: "/mockman",
     element: <Mockbee />,
   },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
 ]);
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <LoginContextProvider>
+      <FeedContextProvider>
+        <RouterProvider router={router} />
+      </FeedContextProvider>
+    </LoginContextProvider>
   </React.StrictMode>
 );
 

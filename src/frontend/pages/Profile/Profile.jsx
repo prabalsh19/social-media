@@ -6,6 +6,7 @@ import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 import "./Profile.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { defaultProfile } from "../../utils/constants";
 
 export const Profile = () => {
   const { userDetails, setIsLoggedIn, setUserDetails } = useLoginContext();
@@ -31,7 +32,8 @@ export const Profile = () => {
       const response = await axios.get(`/api/users/${_id}`);
       setSelectedUser(response.data.user);
     })();
-  }, [_id]);
+  }, [_id, userDetails]);
+
   return (
     <>
       {selectedUser._id && (
@@ -45,7 +47,11 @@ export const Profile = () => {
             alt="profile backdrop"
           />
           <div className="profile-action">
-            <img className="profile__avatar" src={selectedUser.avatar} alt="" />
+            <img
+              className="profile__avatar"
+              src={selectedUser.avatar || defaultProfile}
+              alt=""
+            />
             {selectedUser.username === userDetails.username && (
               <div>
                 <button

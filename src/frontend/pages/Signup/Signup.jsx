@@ -24,7 +24,10 @@ export const Signup = () => {
   const navigate = useNavigate();
   const submitHandler = async (e) => {
     e.preventDefault();
-    const response = await axios.post("/api/auth/signup", { ...signupData });
+    const response = await axios.post("/api/auth/signup", {
+      ...signupData,
+      fullName: `${signupData.firstName} ${signupData.lastName}`,
+    });
     setIsLoggedIn(true);
     setUserDetails(response.data.createdUser);
     localStorage.setItem("encodedToken", response.data.encodedToken);

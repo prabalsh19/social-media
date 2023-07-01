@@ -38,12 +38,12 @@ export const EditPost = ({ _id, showEditPostModal, setShowEditPostModal }) => {
       return;
     }
     const encodedToken = localStorage.getItem("encodedToken");
-    const img = localStorage.getItem("fileBase64");
+
     const response = await axios.post(
       `/api/posts/edit/${_id}`,
       {
         postData: {
-          postImage: img,
+          postImage: previewImg,
           content: formData.caption,
           fullName: userDetails.fullName,
           comments: [],
@@ -88,7 +88,8 @@ export const EditPost = ({ _id, showEditPostModal, setShowEditPostModal }) => {
             />
             Change Image
           </label>
-          <input
+
+          <textarea
             className="caption-container"
             type="text"
             placeholder="Caption"
@@ -96,7 +97,7 @@ export const EditPost = ({ _id, showEditPostModal, setShowEditPostModal }) => {
             onChange={(e) =>
               setFormData((prev) => ({ ...prev, caption: e.target.value }))
             }
-          />
+          ></textarea>
           <button className="post-btn">Submit</button>
         </div>
       </form>

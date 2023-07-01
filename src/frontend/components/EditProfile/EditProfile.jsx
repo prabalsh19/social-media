@@ -5,9 +5,12 @@ import "./EditProfile.css";
 import { useState } from "react";
 import { AvatarOptions } from "../AvatarOptions/AvatarOptions";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
+import { defaultProfile } from "../../utils/constants";
 export const EditProfile = ({ setShowEditProfileModal }) => {
   const { userDetails, setUserDetails } = useLoginContext();
-  const [previewAvatar, setPreviewAvatar] = useState(userDetails.avatar);
+  const [previewAvatar, setPreviewAvatar] = useState(
+    userDetails.avatar || defaultProfile
+  );
   const [formData, setFormData] = useState(userDetails);
   const [showAvatars, setShowAvatars] = useState(false);
   const updateBio = (e) => {
