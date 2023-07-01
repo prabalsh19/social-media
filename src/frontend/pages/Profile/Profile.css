@@ -1,5 +1,6 @@
 .profile-container {
   margin-bottom: 4rem;
+  width: 100%;
 }
 .profile__avatar {
   width: 100px;

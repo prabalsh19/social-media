@@ -9,16 +9,20 @@ export const Home = () => {
   const { sortedPost: posts } = useFeedContext();
 
   return posts.length === 0 ? (
-    <h1>Loading...</h1>
+    <>
+      <h1>No Posts</h1>
+    </>
   ) : (
     <>
-      <Filters />
-      <div className="home-container">
-        <CreatePost />
-        <FollowSuggestion />
-        {posts.map((post) => (
-          <PostCard key={post.id} {...post} />
-        ))}
+      <div className="outlet-container">
+        <Filters />
+        <div className="home-container">
+          <CreatePost />
+          <FollowSuggestion />
+          {posts.map((post) => (
+            <PostCard key={post.id} {...post} />
+          ))}
+        </div>
       </div>
     </>
   );

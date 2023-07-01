@@ -30,14 +30,18 @@ export const FollowSuggestion = () => {
     setUserDetails(response.data.user);
   };
   return (
-    <div className="suggested-users">
-      {suggestedUsers.map((user) => (
-        <div key={user._id} className="suggested-user">
-          <img className="profile-avatar" src={user.avatar} alt="" />
-          <span className="suggested-user__full-name">{user.fullName}</span>
-          <button onClick={() => followHandler(user._id)}>Follow</button>
+    <>
+      {suggestedUsers.length > 0 && (
+        <div className="suggested-users">
+          {suggestedUsers.map((user) => (
+            <div key={user._id} className="suggested-user">
+              <img className="profile-avatar" src={user.avatar} alt="" />
+              <span className="suggested-user__full-name">{user.fullName}</span>
+              <button onClick={() => followHandler(user._id)}>Follow</button>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      )}
+    </>
   );
 };

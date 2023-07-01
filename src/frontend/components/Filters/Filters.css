@@ -13,3 +13,13 @@
   color: white;
   font-weight: bolder;
 }
+@media screen and (width>660px) {
+  .filters-container {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+  }
+  .activeCategory {
+    color: var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
+  }
+}

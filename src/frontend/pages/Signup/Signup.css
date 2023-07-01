@@ -1,7 +1,8 @@
 .signup-form {
   display: flex;
+  padding: 0 1rem 4rem;
+  margin: auto;
   justify-content: center;
-  margin-bottom: 4rem;
 }
 .signup-container {
   display: flex;

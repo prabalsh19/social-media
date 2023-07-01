@@ -35,4 +35,5 @@
 .avatar-options-wrapper {
   position: relative;
   cursor: pointer;
+  text-align: center;
 }

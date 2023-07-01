@@ -39,7 +39,7 @@ export const FeedContextProvider = ({ children }) => {
     posts: [],
     selectedCategory: "LATEST",
   });
-  console.log(userDetails);
+
   const filteredPost = state.posts.filter(
     (post) =>
       userDetails?.following?.some(

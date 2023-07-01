@@ -6,10 +6,12 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 5px;
   align-items: center;
-  background-color: var(--faded-primary-color);
+  background-color: var(--primary-color);
+  border: 1px solid var(--faded-primary-color);
   padding: 1rem;
   box-shadow: var(--box-shadow);
   position: absolute;
-  top: 2rem;
+  top: 4rem;
+  right: 0;
   border-radius: 1rem;
 }

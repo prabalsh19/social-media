@@ -7,8 +7,10 @@ import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
 import "./PageNav.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 export const PageNav = () => {
   const [active, setActive] = useState("HOME");
+  const { userDetails } = useLoginContext();
   return (
     <div className="page-nav">
       <NavLink onClick={() => setActive("HOME")} to="/">
@@ -32,6 +34,15 @@ export const PageNav = () => {
           <BookmarkBorderOutlinedIcon sx={{ fontSize: "1.9rem" }} />
         )}
       </NavLink>
+      {userDetails.avatar && (
+        <NavLink onClick={() => setActive("PROFILE")} to={"/profile"}>
+          <img
+            className="nav__profile-avatar"
+            src={userDetails.avatar}
+            alt=""
+          />
+        </NavLink>
+      )}
     </div>
   );
 };

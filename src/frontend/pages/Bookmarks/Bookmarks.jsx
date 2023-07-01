@@ -23,14 +23,16 @@ export const Bookmarks = () => {
   }, []);
 
   return (
-    <div className="bookmarks-container">
-      {bookmarks.length > 0 ? (
-        bookmarks.map((bookmark) => (
-          <PostCard key={bookmark._id} {...bookmark} />
-        ))
-      ) : (
-        <h1>No bookmarks yet!</h1>
-      )}
-    </div>
+    <>
+      <div className="bookmarks-container outlet-container">
+        {bookmarks.length > 0 ? (
+          bookmarks.map((bookmark) => (
+            <PostCard key={bookmark._id} {...bookmark} />
+          ))
+        ) : (
+          <h1>No bookmarks yet!</h1>
+        )}
+      </div>
+    </>
   );
 };

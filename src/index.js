@@ -13,7 +13,6 @@ import { Bookmarks } from "./frontend/pages/Bookmarks/Bookmarks";
 import { Profile } from "./frontend/pages/Profile/Profile";
 import { Explore } from "./frontend/pages/Explore/Explore";
 import { Signup } from "./frontend/pages/Signup/Signup";
-
 // Call make Server
 makeServer();
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -31,7 +30,7 @@ const router = createBrowserRouter([
           </Auth>
         ),
       },
-      { path: "/login", element: <Login /> },
+
       {
         path: "/bookmarks",
         element: (
@@ -59,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },

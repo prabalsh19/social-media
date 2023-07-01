@@ -11,8 +11,10 @@ function App() {
       <LoginContextProvider>
         <FeedContextProvider>
           <Nav />
-          <Outlet />
-          <PageNav />
+          <main className="main">
+            <PageNav />
+            <Outlet />
+          </main>
         </FeedContextProvider>
       </LoginContextProvider>
     </div>

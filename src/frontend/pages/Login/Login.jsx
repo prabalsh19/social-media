@@ -3,6 +3,7 @@ import "./Login.css";
 import axios from "axios";
 import { useState } from "react";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+import { useEffect } from "react";
 export const Login = () => {
   const [loginData, setLoginData] = useState({ username: "", password: "" });
   const { username, password } = loginData;
@@ -36,6 +37,18 @@ export const Login = () => {
   const guestLoginHandler = () => {
     setLoginData({ username: "prabalsh19", password: "123456789" });
   };
+
+  useEffect(() => {
+    const encodedToken = localStorage.getItem("encodedToken");
+    const userDetailsFromLocal = localStorage.getItem("userDetails");
+
+    if (encodedToken !== null) {
+      setIsLoggedIn(true);
+      setUserDetails(JSON.parse(userDetailsFromLocal));
+      navigate("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <form onSubmit={loginHandler}>
       <div className="login-container">

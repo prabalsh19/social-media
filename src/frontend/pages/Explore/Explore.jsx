@@ -7,10 +7,13 @@ export const Explore = () => {
   } = useFeedContext();
 
   return (
-    <div className="explore-container">
-      {posts.map((post) => (
-        <PostCard key={post._id} {...post} />
-      ))}
-    </div>
+    <>
+      <div className="explore-container outlet-container">
+        <h2>Explore</h2>
+        {posts.map((post) => (
+          <PostCard key={post._id} {...post} />
+        ))}
+      </div>
+    </>
   );
 };

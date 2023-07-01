@@ -20,3 +20,14 @@ body {
 button {
   cursor: pointer;
 }
+.main {
+  min-height: calc(100vh - 5rem);
+}
+@media screen and (width>800px) {
+  .main {
+    max-width: 1000px;
+    margin-inline: auto;
+    display: flex;
+    border: 2px solid rgb(239, 243, 244);
+  }
+}
