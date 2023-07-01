@@ -6,13 +6,15 @@ import { LoginContextProvider } from "./frontend/contexts/LoginContext/loginCont
 import { PageNav } from "./frontend/components/PageNav/PageNav";
 
 function App() {
+  const isLoggedIn = localStorage.getItem("encodedToken");
+
   return (
     <div className="App">
       <LoginContextProvider>
         <FeedContextProvider>
           <Nav />
           <main className="main">
-            <PageNav />
+            {isLoggedIn && <PageNav />}
             <Outlet />
           </main>
         </FeedContextProvider>
