@@ -10,7 +10,7 @@ export const Nav = () => {
         <h1 className="logo">SOCIALS</h1>
       </NavLink>
       {isLoggedIn && (
-        <NavLink to="/profile">
+        <NavLink to={`/profile/${userDetails._id}`}>
           <img className="profile-avatar" src={userDetails.avatar} alt="" />
         </NavLink>
       )}

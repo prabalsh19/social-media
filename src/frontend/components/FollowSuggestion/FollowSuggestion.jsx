@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 import "./FollowSuggestion.css";
+import { NavLink } from "react-router-dom";
 
 export const FollowSuggestion = () => {
   const { userDetails, setUserDetails } = useLoginContext();
@@ -35,7 +36,9 @@ export const FollowSuggestion = () => {
         <div className="suggested-users">
           {suggestedUsers.map((user) => (
             <div key={user._id} className="suggested-user">
-              <img className="profile-avatar" src={user.avatar} alt="" />
+              <NavLink to={`/profile/${user._id}`}>
+                <img className="profile-avatar" src={user.avatar} alt="" />
+              </NavLink>
               <span className="suggested-user__full-name">{user.fullName}</span>
               <button onClick={() => followHandler(user._id)}>Follow</button>
             </div>

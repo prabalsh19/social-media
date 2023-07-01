@@ -24,7 +24,7 @@
   padding: 10px;
 }
 
-.suggested-user > button {
+.suggested-user button {
   border: 1px solid var(--secondary-color);
   padding: 5px 10px;
   color: var(--secondary-color);

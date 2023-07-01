@@ -25,12 +25,15 @@ export const Bookmarks = () => {
   return (
     <>
       <div className="bookmarks-container outlet-container">
+        <h2>Bookmarks</h2>
         {bookmarks.length > 0 ? (
           bookmarks.map((bookmark) => (
             <PostCard key={bookmark._id} {...bookmark} />
           ))
         ) : (
-          <h2>No bookmarks yet!</h2>
+          <div className="bookmarks-container outlet-container">
+            <h2>No bookmarks yet!</h2>
+          </div>
         )}
       </div>
     </>
