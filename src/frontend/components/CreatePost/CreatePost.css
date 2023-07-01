@@ -6,6 +6,7 @@ input[type="file"] {
   bottom: 10%;
   right: 10%;
   cursor: pointer;
+  z-index: 100;
 }
 
 .create-modal {
