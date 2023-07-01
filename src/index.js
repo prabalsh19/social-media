@@ -15,6 +15,7 @@ import { Explore } from "./frontend/pages/Explore/Explore";
 import { Signup } from "./frontend/pages/Signup/Signup";
 import { LoginContextProvider } from "./frontend/contexts/LoginContext/loginContext";
 import { FeedContextProvider } from "./frontend/contexts/FeedContext/feedContext";
+
 // Call make Server
 makeServer();
 const root = ReactDOM.createRoot(document.getElementById("root"));
