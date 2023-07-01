@@ -9,7 +9,7 @@
   align-items: center;
   max-height: 2rem;
   background-color: var(--primary-color);
-  z-index: 1000;
+  z-index: 97;
 }
 .page-nav a {
   color: inherit;

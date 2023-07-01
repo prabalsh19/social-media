@@ -30,7 +30,7 @@ export const Bookmarks = () => {
             <PostCard key={bookmark._id} {...bookmark} />
           ))
         ) : (
-          <h1>No bookmarks yet!</h1>
+          <h2>No bookmarks yet!</h2>
         )}
       </div>
     </>
