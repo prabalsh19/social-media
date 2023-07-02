@@ -13,6 +13,7 @@ import { CommentModal } from "../CommentModal/CommentModal";
 import { EditPost } from "../EditPost/EditPost";
 import { PostMenuOptions } from "../PostMenuOptions/PostMenuOptions";
 import { defaultProfile } from "../../utils/constants";
+import { Link } from "react-router-dom";
 export const PostCard = ({
   _id,
   id,
@@ -126,13 +127,17 @@ export const PostCard = ({
       <div className="post-card">
         <div className="post-info">
           <div className="post-info-subcontainer">
-            <img
-              className="profile-avatar"
-              src={
-                loggedInUserPost ? userDetails.avatar ?? defaultProfile : avatar
-              }
-              alt="profile-avatar"
-            />
+            <Link to={`profile/${_id}`}>
+              <img
+                className="profile-avatar"
+                src={
+                  loggedInUserPost
+                    ? userDetails.avatar ?? defaultProfile
+                    : avatar
+                }
+                alt="profile-avatar"
+              />
+            </Link>
             <div>
               <p>{fullName}</p>
               <small>@{username}</small>

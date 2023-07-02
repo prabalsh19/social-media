@@ -24,6 +24,10 @@ export const Signup = () => {
   const navigate = useNavigate();
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (signupData.password !== signupData.confirmPassword) {
+      alert("Confirm Password does not match!");
+      return;
+    }
     try {
       const response = await axios.post("/api/auth/signup", {
         ...signupData,
