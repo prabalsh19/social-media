@@ -22,8 +22,9 @@ export const AvatarOptions = ({ setFormData, setPreviewAvatar }) => {
   return (
     <>
       <div className="avatar-options">
-        {avatarImg.map((avatar) => (
+        {avatarImg.map((avatar, index) => (
           <img
+            key={index}
             className="profile-avatar avatar_options_avatar"
             alt="avatar"
             src={avatar}

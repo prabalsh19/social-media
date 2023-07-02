@@ -15,6 +15,7 @@ import { Explore } from "./frontend/pages/Explore/Explore";
 import { Signup } from "./frontend/pages/Signup/Signup";
 import { LoginContextProvider } from "./frontend/contexts/LoginContext/loginContext";
 import { FeedContextProvider } from "./frontend/contexts/FeedContext/feedContext";
+import { Welcome } from "./frontend/pages/Welcome/Welcome";
 
 // Call make Server
 makeServer();
@@ -72,6 +73,7 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
+  { path: "/getting-started", element: <Welcome /> },
 ]);
 
 root.render(

@@ -36,7 +36,7 @@ export const Signup = () => {
         "userDetails",
         JSON.stringify(response.data.createdUser)
       );
-      navigate("/");
+      navigate("/getting-started");
     } catch (e) {
       console.error(e);
     }

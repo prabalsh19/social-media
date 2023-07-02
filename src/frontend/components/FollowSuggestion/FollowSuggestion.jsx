@@ -20,7 +20,7 @@ export const FollowSuggestion = () => {
   }, []);
   const suggestedUsers = users.filter(
     (user) =>
-      !userDetails.following.some(({ _id }) => _id === user._id) &&
+      !userDetails?.following?.some(({ _id }) => _id === user._id) &&
       user.username !== userDetails.username
   );
   const followHandler = async (_id) => {
@@ -43,7 +43,7 @@ export const FollowSuggestion = () => {
     <>
       {suggestedUsers.length > 0 && (
         <div className="suggested-users">
-          {suggestedUsers.map((user) => (
+          {suggestedUsers.slice(0, 6).map((user) => (
             <div key={user._id} className="suggested-user">
               <NavLink to={`/profile/${user._id}`}>
                 <img className="profile-avatar" src={user.avatar} alt="" />
