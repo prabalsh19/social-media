@@ -6,7 +6,7 @@ export const LoginContextProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userDetails, setUserDetails] = useState({});
   const [bookmarks, setBookmarks] = useState([]);
-  console.log(userDetails);
+
   const value = {
     isLoggedIn,
     setIsLoggedIn,

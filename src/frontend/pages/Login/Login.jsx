@@ -14,22 +14,26 @@ export const Login = () => {
   const location = useLocation();
   const loginHandler = async (e) => {
     e.preventDefault();
-    const response = await axios.post("/api/auth/login", {
-      username,
-      password,
-    });
+    try {
+      const response = await axios.post("/api/auth/login", {
+        username,
+        password,
+      });
 
-    setIsLoggedIn(true);
-    setUserDetails(response.data.foundUser);
-    localStorage.setItem("encodedToken", response.data.encodedToken);
-    localStorage.setItem(
-      "userDetails",
-      JSON.stringify(response.data.foundUser)
-    );
+      setIsLoggedIn(true);
+      setUserDetails(response.data.foundUser);
+      localStorage.setItem("encodedToken", response.data.encodedToken);
+      localStorage.setItem(
+        "userDetails",
+        JSON.stringify(response.data.foundUser)
+      );
 
-    location.state
-      ? navigate(location?.state?.location?.pathname)
-      : navigate("/");
+      location.state
+        ? navigate(location?.state?.location?.pathname)
+        : navigate("/");
+    } catch (e) {
+      console.error(e);
+    }
   };
   const inputChangeHandler = (e) => {
     setLoginData((prev) => ({ ...prev, [e.target.name]: e.target.value }));

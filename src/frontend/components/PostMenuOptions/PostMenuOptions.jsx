@@ -7,11 +7,15 @@ export const PostMenuOptions = ({ _id, setShowEditPostModal, username }) => {
   const { dispatch } = useFeedContext();
   const deletePostHandler = async (_id) => {
     const encodedToken = localStorage.getItem("encodedToken");
-    const response = await axios.delete(`/api/posts/${_id}`, {
-      headers: { authorization: encodedToken },
-    });
+    try {
+      const response = await axios.delete(`/api/posts/${_id}`, {
+        headers: { authorization: encodedToken },
+      });
 
-    dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
+      dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
+    } catch (e) {
+      console.error(e);
+    }
   };
   const userDoesFollow = userDetails.following.some(
     (following) => following.username === username
@@ -19,25 +23,34 @@ export const PostMenuOptions = ({ _id, setShowEditPostModal, username }) => {
   const unfollowHandler = async (_id) => {
     const encodedToken = localStorage.getItem("encodedToken");
 
-    const response = await axios.post(
-      `/api/users/unfollow/${_id}`,
-      {},
-      {
-        headers: { authorization: encodedToken },
-      }
-    );
-    setUserDetails(response.data.user);
+    try {
+      const response = await axios.post(
+        `/api/users/unfollow/${_id}`,
+        {},
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
+
+      setUserDetails(response.data.user);
+    } catch (e) {
+      console.error(e);
+    }
   };
   const followHandler = async (_id) => {
     const encodedToken = localStorage.getItem("encodedToken");
-    const response = await axios.post(
-      `/api/users/follow/${_id}`,
-      {},
-      {
-        headers: { authorization: encodedToken },
-      }
-    );
-    setUserDetails(response.data.user);
+    try {
+      const response = await axios.post(
+        `/api/users/follow/${_id}`,
+        {},
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
+      setUserDetails(response.data.user);
+    } catch (e) {
+      console.error(e);
+    }
   };
   return (
     <div className="menu-options">

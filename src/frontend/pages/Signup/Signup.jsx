@@ -24,18 +24,22 @@ export const Signup = () => {
   const navigate = useNavigate();
   const submitHandler = async (e) => {
     e.preventDefault();
-    const response = await axios.post("/api/auth/signup", {
-      ...signupData,
-      fullName: `${signupData.firstName} ${signupData.lastName}`,
-    });
-    setIsLoggedIn(true);
-    setUserDetails(response.data.createdUser);
-    localStorage.setItem("encodedToken", response.data.encodedToken);
-    localStorage.setItem(
-      "userDetails",
-      JSON.stringify(response.data.createdUser)
-    );
-    navigate("/");
+    try {
+      const response = await axios.post("/api/auth/signup", {
+        ...signupData,
+        fullName: `${signupData.firstName} ${signupData.lastName}`,
+      });
+      setIsLoggedIn(true);
+      setUserDetails(response.data.createdUser);
+      localStorage.setItem("encodedToken", response.data.encodedToken);
+      localStorage.setItem(
+        "userDetails",
+        JSON.stringify(response.data.createdUser)
+      );
+      navigate("/");
+    } catch (e) {
+      console.error(e);
+    }
   };
   const setShowPasswordsHandler = (e) => {
     setShowPasswords((prev) => ({

@@ -22,7 +22,7 @@ export const PostCard = ({
   content,
   createdAt,
   comments,
-  avatar,
+  avatar = defaultProfile,
   likes: { likeCount, likedBy },
 }) => {
   const [showCommentModal, setShowCommentModal] = useState(false);
@@ -82,25 +82,34 @@ export const PostCard = ({
   const addToBookmarkHandler = async () => {
     setIsBookmarked(true);
     const encodedToken = localStorage.getItem("encodedToken");
-    const response = await axios.post(
-      `/api/users/bookmark/${_id}`,
-      {},
-      { headers: { authorization: encodedToken } }
-    );
+    try {
+      const response = await axios.post(
+        `/api/users/bookmark/${_id}`,
+        {},
+        { headers: { authorization: encodedToken } }
+      );
 
-    setBookmarks(response.data.bookmarks);
+      setBookmarks(response.data.bookmarks);
+    } catch (e) {
+      console.error(e);
+    }
   };
   const removeFromBookmarkHandler = async () => {
     setIsBookmarked(false);
     const encodedToken = localStorage.getItem("encodedToken");
-    const response = await axios.post(
-      `/api/users/remove-bookmark/${_id}`,
-      {},
-      { headers: { authorization: encodedToken } }
-    );
-    setBookmarks(response.data.bookmarks);
+    try {
+      const response = await axios.post(
+        `/api/users/remove-bookmark/${_id}`,
+        {},
+        { headers: { authorization: encodedToken } }
+      );
+      setBookmarks(response.data.bookmarks);
+    } catch (e) {
+      console.error(e);
+    }
   };
   const loggedInUserPost = username === userDetails.username;
+
   return (
     <>
       {showCommentModal && (
@@ -120,7 +129,7 @@ export const PostCard = ({
             <img
               className="profile-avatar"
               src={
-                loggedInUserPost ? userDetails.avatar : avatar || defaultProfile
+                loggedInUserPost ? userDetails.avatar ?? defaultProfile : avatar
               }
               alt="profile-avatar"
             />

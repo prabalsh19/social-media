@@ -39,27 +39,31 @@ export const EditPost = ({ _id, showEditPostModal, setShowEditPostModal }) => {
     }
     const encodedToken = localStorage.getItem("encodedToken");
 
-    const response = await axios.post(
-      `/api/posts/edit/${_id}`,
-      {
-        postData: {
-          postImage: previewImg,
-          content: formData.caption,
-          fullName: userDetails.fullName,
-          comments: [],
+    try {
+      const response = await axios.post(
+        `/api/posts/edit/${_id}`,
+        {
+          postData: {
+            postImage: previewImg,
+            content: formData.caption,
+            fullName: userDetails.fullName,
+            comments: [],
+          },
         },
-      },
-      {
-        headers: {
-          authorization: encodedToken,
-        },
-      }
-    );
-    dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+      dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
 
-    localStorage.removeItem("fileBase64");
-    setPreviewImg("");
-    setShowEditPostModal(false);
+      localStorage.removeItem("fileBase64");
+      setPreviewImg("");
+      setShowEditPostModal(false);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (

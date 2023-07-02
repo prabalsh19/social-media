@@ -11,10 +11,14 @@ export const Bookmarks = () => {
     const encodedToken = localStorage.getItem("encodedToken");
     try {
       (async () => {
-        const response = await axios.get("/api/users/bookmark/", {
-          headers: { authorization: encodedToken },
-        });
-        setBookmarks(response.data.bookmarks);
+        try {
+          const response = await axios.get("/api/users/bookmark/", {
+            headers: { authorization: encodedToken },
+          });
+          setBookmarks(response.data.bookmarks);
+        } catch (e) {
+          console.error(e);
+        }
       })();
     } catch (e) {
       console.error(e);

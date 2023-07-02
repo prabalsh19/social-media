@@ -10,8 +10,12 @@ export const FollowSuggestion = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     (async () => {
-      const response = await axios.get("/api/users");
-      setUsers(response.data.users);
+      try {
+        const response = await axios.get("/api/users");
+        setUsers(response.data.users);
+      } catch (e) {
+        console.error(e);
+      }
     })();
   }, []);
   const suggestedUsers = users.filter(
@@ -21,14 +25,19 @@ export const FollowSuggestion = () => {
   );
   const followHandler = async (_id) => {
     const encodedToken = localStorage.getItem("encodedToken");
-    const response = await axios.post(
-      `/api/users/follow/${_id}`,
-      {},
-      {
-        headers: { authorization: encodedToken },
-      }
-    );
-    setUserDetails(response.data.user);
+    try {
+      const response = await axios.post(
+        `/api/users/follow/${_id}`,
+        {},
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
+
+      setUserDetails(response.data.user);
+    } catch (e) {
+      console.error(e);
+    }
   };
   return (
     <>

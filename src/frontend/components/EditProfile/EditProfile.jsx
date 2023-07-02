@@ -22,18 +22,22 @@ export const EditProfile = ({ setShowEditProfileModal }) => {
   const editProfileHandler = async (e) => {
     e.preventDefault();
     const encodedToken = localStorage.getItem("encodedToken");
-    const response = await axios.post(
-      "/api/users/edit",
-      {
-        userData: formData,
-      },
-      {
-        headers: { authorization: encodedToken },
-      }
-    );
+    try {
+      const response = await axios.post(
+        "/api/users/edit",
+        {
+          userData: formData,
+        },
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
 
-    setUserDetails(response.data.user);
-    setShowEditProfileModal(false);
+      setUserDetails(response.data.user);
+      setShowEditProfileModal(false);
+    } catch (e) {
+      console.error(e);
+    }
   };
   const fileUploadHandler = (e) => {
     const file = e.target.files[0];

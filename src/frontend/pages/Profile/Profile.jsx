@@ -29,8 +29,12 @@ export const Profile = () => {
   const { _id } = useParams();
   useEffect(() => {
     (async () => {
-      const response = await axios.get(`/api/users/${_id}`);
-      setSelectedUser(response.data.user);
+      try {
+        const response = await axios.get(`/api/users/${_id}`);
+        setSelectedUser(response.data.user);
+      } catch (e) {
+        console.error(e);
+      }
     })();
   }, [_id, userDetails]);
   const userFollowsThisProfile = userDetails.following.some(
@@ -38,26 +42,34 @@ export const Profile = () => {
   );
   const followHandler = async (_id) => {
     const encodedToken = localStorage.getItem("encodedToken");
-    const response = await axios.post(
-      `/api/users/follow/${_id}`,
-      {},
-      {
-        headers: { authorization: encodedToken },
-      }
-    );
-    setUserDetails(response.data.user);
+    try {
+      const response = await axios.post(
+        `/api/users/follow/${_id}`,
+        {},
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
+      setUserDetails(response.data.user);
+    } catch (e) {
+      console.error(e);
+    }
   };
   const unfollowHandler = async (_id) => {
     const encodedToken = localStorage.getItem("encodedToken");
 
-    const response = await axios.post(
-      `/api/users/unfollow/${_id}`,
-      {},
-      {
-        headers: { authorization: encodedToken },
-      }
-    );
-    setUserDetails(response.data.user);
+    try {
+      const response = await axios.post(
+        `/api/users/unfollow/${_id}`,
+        {},
+        {
+          headers: { authorization: encodedToken },
+        }
+      );
+      setUserDetails(response.data.user);
+    } catch (e) {
+      console.error(e);
+    }
   };
   return (
     <>

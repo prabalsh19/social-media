@@ -42,28 +42,32 @@ export const CreatePost = () => {
     }
     const encodedToken = localStorage.getItem("encodedToken");
     const img = localStorage.getItem("fileBase64");
-    const response = await axios.post(
-      "/api/posts",
-      {
-        postData: {
-          postImage: img,
-          content: formData.caption,
-          fullName: userDetails.fullName,
-          comments: [],
+    try {
+      const response = await axios.post(
+        "/api/posts",
+        {
+          postData: {
+            postImage: img,
+            content: formData.caption,
+            fullName: userDetails.fullName,
+            comments: [],
+          },
         },
-      },
-      {
-        headers: {
-          authorization: encodedToken,
-        },
-      }
-    );
-    dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+      dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
 
-    setShowModal(false);
-    localStorage.removeItem("fileBase64");
-    setPreviewImg("");
-    setFormData({ caption: "" });
+      setShowModal(false);
+      localStorage.removeItem("fileBase64");
+      setPreviewImg("");
+      setFormData({ caption: "" });
+    } catch (e) {
+      console.error(e);
+    }
   };
   return (
     <>

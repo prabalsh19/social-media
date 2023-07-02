@@ -30,8 +30,12 @@ export const FeedContextProvider = ({ children }) => {
   const { userDetails } = useLoginContext();
   useEffect(() => {
     (async () => {
-      const response = await axios.get("/api/posts");
-      dispatch({ type: "INITIAL_FEED_FETCH", payload: response.data.posts });
+      try {
+        const response = await axios.get("/api/posts");
+        dispatch({ type: "INITIAL_FEED_FETCH", payload: response.data.posts });
+      } catch (e) {
+        console.error(e);
+      }
     })();
   }, []);
 
