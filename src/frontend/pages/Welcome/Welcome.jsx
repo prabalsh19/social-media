@@ -3,7 +3,7 @@ import { AvatarOptions } from "../../components/AvatarOptions/AvatarOptions";
 import "./Welcome.css";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 import { FollowSuggestion } from "../../components/FollowSuggestion/FollowSuggestion";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 export const Welcome = () => {
   const { userDetails, setUserDetails } = useLoginContext();
@@ -22,7 +22,7 @@ export const Welcome = () => {
           headers: { authorization: encodedToken },
         }
       );
-      console.log(response);
+
       setUserDetails(response.data.user);
       navigate("/");
     } catch (e) {
@@ -30,7 +30,7 @@ export const Welcome = () => {
     }
     navigate("/");
   };
-  console.log(previewAvatar);
+
   return (
     <div className="welcome-container">
       <h1>Welcome, Just Few Steps To Go...</h1>
@@ -49,11 +49,11 @@ export const Welcome = () => {
           <img src={previewAvatar} className="profile-avatar" alt="" />
         </div>
       )}
-      <span id="choose-avatar">Last Step Follow Few People</span>
+      <span id="choose-avatar">Last Step Follow Atleast 3 People</span>
       <FollowSuggestion />
 
       <button
-        disabled={userDetails?.following?.length < 3 && !previewAvatar}
+        disabled={userDetails.following.length < 3 || !previewAvatar}
         className="get-started-btn"
         onClick={getStartedHandler}
       >
