@@ -1,10 +1,12 @@
-import "./Filters.css";
 import { useFeedContext } from "../../contexts/index";
+import "./Filters.css";
+
 export const Filters = () => {
   const {
     state: { selectedCategory },
     dispatch,
   } = useFeedContext();
+
   return (
     <div className="filters-container">
       <span

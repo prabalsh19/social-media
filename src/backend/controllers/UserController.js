@@ -103,7 +103,7 @@ export const getBookmarkPostsHandler = function (schema, request) {
         }
       );
     }
-    return new Response(200, {}, { bookmarks: user.bookmarks });
+    return new Response(200, {}, { user });
   } catch (error) {
     return new Response(
       500,
@@ -157,7 +157,7 @@ export const bookmarkPostHandler = function (schema, request) {
     //   { _id: user._id },
     //   { ...user, updatedAt: formatDate() }
     // );
-    return new Response(200, {}, { bookmarks: user.bookmarks });
+    return new Response(200, {}, { user });
   } catch (error) {
     return new Response(
       500,
@@ -203,7 +203,7 @@ export const removePostFromBookmarkHandler = function (schema, request) {
       { _id: user._id },
       { ...user, updatedAt: formatDate() }
     );
-    return new Response(200, {}, { bookmarks: user.bookmarks });
+    return new Response(200, {}, { user });
   } catch (error) {
     return new Response(
       500,

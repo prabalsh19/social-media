@@ -1,33 +1,27 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import { EditProfile, PostCard } from "../../components/index";
 import { useFeedContext, useLoginContext } from "../../contexts/index";
-import "./Profile.css";
-import { useParams } from "react-router-dom";
-import { defaultProfile } from "../../utils/constants";
 import {
   followUserService,
   getUserService,
   unfollowUserService,
 } from "../../services/services";
+import "./Profile.css";
+import { formatDate } from "../../utils/helper";
+import { backdrop } from "../../utils/constants";
 
 export const Profile = () => {
-  const { userDetails, setIsLoggedIn, setUserDetails } = useLoginContext();
   const [showEditProfileModal, setShowEditProfileModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState({});
-  const date = new Date(selectedUser.createdAt);
-  const dateString = date.toLocaleDateString("en-IN", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const { userDetails, setIsLoggedIn, setUserDetails } = useLoginContext();
   const {
     state: { posts },
   } = useFeedContext();
-  const logoutHandler = () => {
-    setIsLoggedIn(false);
-    setUserDetails({});
-    localStorage.clear();
-  };
+
+  const dateStr = formatDate(selectedUser?.createdAt);
+
   const { username } = useParams();
   useEffect(() => {
     (async () => {
@@ -39,9 +33,12 @@ export const Profile = () => {
       }
     })();
   }, [username, userDetails]);
-  const userFollowsThisProfile = userDetails.following.some(
-    (user) => user.username === selectedUser.username
-  );
+
+  const logoutHandler = () => {
+    setIsLoggedIn(false);
+    setUserDetails({});
+    localStorage.clear();
+  };
   const followHandler = async (_id) => {
     try {
       const response = await followUserService(_id);
@@ -58,6 +55,11 @@ export const Profile = () => {
       console.error(e);
     }
   };
+
+  const userFollowsThisProfile = userDetails.following.some(
+    (user) => user.username === selectedUser.username
+  );
+  const loggedInUserProfile = username === userDetails.username;
   return (
     <>
       {selectedUser._id && (
@@ -67,16 +69,12 @@ export const Profile = () => {
           )}
           <img
             className="profile_backdrop"
-            src={`https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80`}
+            src={backdrop}
             alt="profile backdrop"
           />
           <div className="profile-action">
-            <img
-              className="profile__avatar"
-              src={selectedUser.avatar || defaultProfile}
-              alt=""
-            />
-            {selectedUser.username === userDetails.username ? (
+            <img className="profile__avatar" src={selectedUser.avatar} alt="" />
+            {loggedInUserProfile ? (
               <div>
                 <button
                   className="profile-edit-btn"
@@ -110,7 +108,10 @@ export const Profile = () => {
               <b>{selectedUser.fullName}</b>
               <small>@{selectedUser.username}</small>
               <p>{selectedUser.bio}</p>
-              <a href={`https://${selectedUser.portfolio}`}>
+              <a
+                className="defaultLink"
+                href={`https://${selectedUser.portfolio}`}
+              >
                 {selectedUser.portfolio}
               </a>
             </div>
@@ -118,7 +119,7 @@ export const Profile = () => {
               <span>{selectedUser?.followers?.length} Followers</span>
               <span>{selectedUser?.following?.length} Following</span>
             </div>
-            <span>Member Since: {dateString}</span>
+            <span>Member Since: {dateStr}</span>
           </div>
           <div className="user-posts">
             {posts

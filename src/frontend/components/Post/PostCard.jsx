@@ -4,18 +4,21 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 import "./PostCard.css";
 import { useFeedContext, useLoginContext } from "../../contexts/index";
-import { useState } from "react";
 import { CommentModal, EditPost, PostMenuOptions } from "../index";
-import { defaultProfile } from "../../utils/constants";
-import { Link } from "react-router-dom";
 import {
   addToBookmarkService,
   dislikePostService,
   likePostService,
   removeFromBookmarkService,
 } from "../../services/services";
+import { formatDate } from "../../utils/helper";
+
 export const PostCard = ({
   _id,
   fullName,
@@ -24,7 +27,7 @@ export const PostCard = ({
   content,
   createdAt,
   comments,
-  avatar = defaultProfile,
+  avatar,
   likes: { likeCount, likedBy },
 }) => {
   const [showCommentModal, setShowCommentModal] = useState(false);
@@ -32,23 +35,18 @@ export const PostCard = ({
   const [showEditPostModal, setShowEditPostModal] = useState(false);
 
   const { dispatch } = useFeedContext();
-  const date = new Date(createdAt);
-  const longFormatDate = date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-  const { userDetails, bookmarks, setBookmarks } = useLoginContext();
-  const [liked, setLiked] = useState(
-    likedBy.find((user) => user.username === userDetails.username)
-  );
-  const [isBookmarked, setIsBookmarked] = useState(
-    bookmarks.find((bookmark) => bookmark._id === _id)
+  const { userDetails, setUserDetails } = useLoginContext();
+
+  const dateStr = formatDate(createdAt);
+
+  const isLiked = likedBy.find(
+    (user) => user.username === userDetails.username
   );
 
+  const isBookmarked = userDetails.bookmarks.find(
+    (bookmark) => bookmark._id === _id
+  );
   const likeHandler = async (_id) => {
-    setLiked(true);
-
     try {
       const response = await likePostService(_id);
       dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
@@ -57,8 +55,6 @@ export const PostCard = ({
     }
   };
   const dislikeHandler = async (_id) => {
-    setLiked(false);
-
     try {
       const response = await dislikePostService(_id);
       dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
@@ -66,26 +62,19 @@ export const PostCard = ({
       console.error(e);
     }
   };
-  const commentBtnHandler = () => {
-    setShowCommentModal(true);
-  };
-  const addToBookmarkHandler = async () => {
-    setIsBookmarked(true);
 
+  const addToBookmarkHandler = async () => {
     try {
       const response = await addToBookmarkService(_id);
-
-      setBookmarks(response.data.bookmarks);
+      setUserDetails(response.data.user);
     } catch (e) {
       console.error(e);
     }
   };
   const removeFromBookmarkHandler = async () => {
-    setIsBookmarked(false);
-
     try {
       const response = await removeFromBookmarkService(_id);
-      setBookmarks(response.data.bookmarks);
+      setUserDetails(response.data.user);
     } catch (e) {
       console.error(e);
     }
@@ -104,18 +93,14 @@ export const PostCard = ({
           setShowEditPostModal={setShowEditPostModal}
         />
       )}
-      <EditPost />
+
       <div className="post-card">
         <div className="post-info">
           <div className="post-info-subcontainer">
             <Link to={`profile/${username}`}>
               <img
                 className="profile-avatar"
-                src={
-                  loggedInUserPost
-                    ? userDetails.avatar ?? defaultProfile
-                    : avatar
-                }
+                src={loggedInUserPost ? userDetails.avatar : avatar}
                 alt="profile-avatar"
               />
             </Link>
@@ -125,8 +110,8 @@ export const PostCard = ({
             </div>
           </div>
           <div className="post-info-subcontainer">
-            <small>{longFormatDate}</small>
-            {userDetails.username === username && (
+            <small>{dateStr}</small>
+            {loggedInUserPost && (
               <span
                 className="menu-icon"
                 onClick={() => setShowMenuOptions(!showMenuOptions)}
@@ -150,7 +135,7 @@ export const PostCard = ({
         <div className="post-actions">
           <div className="post-actions-inner-container">
             <div className="action">
-              {liked ? (
+              {isLiked ? (
                 <span onClick={() => dislikeHandler(_id)}>
                   <FavoriteIcon sx={{ color: "#ff3040" }} />
                 </span>
@@ -163,7 +148,7 @@ export const PostCard = ({
               <span>{likeCount}</span>
             </div>
             <div className="action">
-              <span onClick={commentBtnHandler}>
+              <span onClick={() => setShowCommentModal(true)}>
                 <CommentIcon />
               </span>
               <span>{comments.length}</span>

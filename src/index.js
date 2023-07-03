@@ -14,12 +14,12 @@ import {
   Signup,
   Welcome,
 } from "./frontend/pages/index";
-import { Auth } from "./frontend/Auth/Auth";
-import { makeServer } from "./server";
 import {
   LoginContextProvider,
   FeedContextProvider,
 } from "./frontend/contexts/index";
+import { Auth } from "./frontend/Auth/Auth";
+import { makeServer } from "./server";
 
 // Call make Server
 makeServer();
@@ -77,7 +77,14 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
-  { path: "/getting-started", element: <Welcome /> },
+  {
+    path: "/getting-started",
+    element: (
+      <Auth>
+        <Welcome />
+      </Auth>
+    ),
+  },
 ]);
 
 root.render(

@@ -35,13 +35,8 @@ export const editUserService = async (userData) => {
   );
 };
 
-//Not using this
 export const getPostsService = async () => {
   return axios.get("/api/posts");
-};
-//Not using this
-export const getPostService = async (postId) => {
-  return axios.get(`/api/posts/${postId}`);
 };
 
 export const createPostService = async (postData) => {

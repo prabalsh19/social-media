@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import "./Signup.css";
+
 import { signUpService } from "../../services/services";
 import { useLoginContext } from "../../contexts/index";
+import "./Signup.css";
 
 export const Signup = () => {
   const [signupData, setSignupData] = useState({
@@ -18,10 +19,13 @@ export const Signup = () => {
     confirmPassword: false,
   });
   const { setIsLoggedIn, setUserDetails } = useLoginContext();
+
+  const navigate = useNavigate();
+
   const inputChangeHandler = (e) => {
     setSignupData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const navigate = useNavigate();
+
   const submitHandler = async (e) => {
     e.preventDefault();
     if (signupData.password !== signupData.confirmPassword) {
@@ -30,7 +34,6 @@ export const Signup = () => {
     }
     try {
       const response = await signUpService(signupData);
-      console.log(response);
       setIsLoggedIn(true);
       setUserDetails(response.data.createdUser);
       localStorage.setItem("encodedToken", response.data.encodedToken);
@@ -100,8 +103,9 @@ export const Signup = () => {
             type="checkbox"
             onChange={(e) => setShowPasswordsHandler(e)}
             name="password"
+            id="password"
           />
-          <label htmlFor="">Show Password</label>
+          <label htmlFor="password">Show Password</label>
         </div>
         <input
           type={showPasswords.confirmPassword ? "text" : "password"}
@@ -117,12 +121,16 @@ export const Signup = () => {
             onChange={(e) => setShowPasswordsHandler(e)}
             type="checkbox"
             name="confirmPassword"
+            id="confirmPassword"
           />
-          <label htmlFor="">Show Confirm Password</label>
+          <label htmlFor="confirmPassword">Show Confirm Password</label>
         </div>
         <button>Signup</button>
         <p>
-          Already have an account? <NavLink to={"/login"}>Login</NavLink>
+          Already have an account?{" "}
+          <NavLink to={"/login"} className={"defaultLink"}>
+            Login
+          </NavLink>
         </p>
       </div>
     </form>

@@ -1,18 +1,20 @@
 import { useState } from "react";
-import { AvatarOptions, FollowSuggestion } from "../../components/index";
-import "./Welcome.css";
-import { useLoginContext } from "../../contexts/index";
 import { useNavigate } from "react-router-dom";
+
+import { AvatarOptions, FollowSuggestion } from "../../components/index";
+import { useLoginContext } from "../../contexts/index";
 import { editUserService } from "../../services/services";
+import "./Welcome.css";
+
 export const Welcome = () => {
   const { userDetails, setUserDetails } = useLoginContext();
-
   const [previewAvatar, setPreviewAvatar] = useState();
+
   const navigate = useNavigate();
+
   const getStartedHandler = async () => {
     try {
       const response = await editUserService({
-        ...userDetails,
         avatar: previewAvatar,
       });
       setUserDetails(response.data.user);
@@ -20,7 +22,6 @@ export const Welcome = () => {
     } catch (e) {
       console.error(e);
     }
-    navigate("/");
   };
 
   return (

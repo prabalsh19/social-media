@@ -1,8 +1,9 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import "./Login.css";
 import { useState } from "react";
+
 import { useLoginContext } from "../../contexts/index";
 import { loginService } from "../../services/services";
+import "./Login.css";
 
 export const Login = () => {
   const [loginData, setLoginData] = useState({ username: "", password: "" });
@@ -15,7 +16,6 @@ export const Login = () => {
     e.preventDefault();
     try {
       const response = await loginService(loginData);
-
       setIsLoggedIn(true);
       setUserDetails(response.data.foundUser);
       localStorage.setItem("encodedToken", response.data.encodedToken);
@@ -37,7 +37,7 @@ export const Login = () => {
   };
 
   return (
-    <form onSubmit={loginHandler}>
+    <form onSubmit={loginHandler} autoComplete="off">
       <div className="login-container">
         <h2>Login</h2>
         <input
@@ -59,7 +59,10 @@ export const Login = () => {
         <button>Login</button>
         <button onClick={guestLoginHandler}>Guest Login</button>
         <p>
-          Don't have an account? <NavLink to={"/signup"}>Signup</NavLink>
+          Don't have an account?{" "}
+          <NavLink to={"/signup"} className={"defaultLink"}>
+            Signup
+          </NavLink>
         </p>
       </div>
     </form>

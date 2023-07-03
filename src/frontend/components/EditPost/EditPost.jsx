@@ -1,52 +1,40 @@
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { useState } from "react";
-import { useFeedContext, useLoginContext } from "../../contexts/index";
+
+import { useFeedContext } from "../../contexts/index";
 import { editPostService } from "../../services/services";
+import { getBase64 } from "../../utils/helper";
 
 export const EditPost = ({ _id, showEditPostModal, setShowEditPostModal }) => {
   const { state, dispatch } = useFeedContext();
+
   const selectedPost = state.posts.find((post) => post._id === _id);
-  const [formData, setFormData] = useState({ caption: selectedPost?.content });
-  const [previewImg, setPreviewImg] = useState(selectedPost?.postImage);
-  const { userDetails } = useLoginContext();
+
+  const [formData, setFormData] = useState({
+    previewImg: selectedPost.postImage,
+    caption: selectedPost.content,
+  });
+  const { previewImg, caption } = formData;
+
   const fileUploadHandler = (e) => {
     const file = e.target.files[0];
-    getBase64(file)
-      .then((base64) => {
-        setFormData((prev) => ({ ...prev, img: JSON.stringify(base64) }));
-        localStorage.setItem("fileBase64", base64);
-      })
-      .then(() => {
-        const dataImage = localStorage.getItem("fileBase64");
-        setPreviewImg(dataImage);
-      });
-  };
-  const getBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-      reader.readAsDataURL(file);
+    getBase64(file).then((base64) => {
+      setFormData((prev) => ({ ...prev, previewImg: base64 }));
     });
   };
+
   const editPostHandler = async (e) => {
     e.preventDefault();
     if (previewImg === "") {
-      alert("Please select an image");
-      return;
+      return alert("Please select an image");
     }
 
     try {
       const response = await editPostService(_id, {
         postImage: previewImg,
-        content: formData.caption,
-        fullName: userDetails.fullName,
-        comments: [],
+        content: caption,
       });
       dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
-
-      localStorage.removeItem("fileBase64");
-      setPreviewImg("");
       setShowEditPostModal(false);
     } catch (e) {
       console.error(e);
@@ -84,7 +72,7 @@ export const EditPost = ({ _id, showEditPostModal, setShowEditPostModal }) => {
             className="caption-container"
             type="text"
             placeholder="Caption"
-            value={formData.caption}
+            value={caption}
             onChange={(e) =>
               setFormData((prev) => ({ ...prev, caption: e.target.value }))
             }

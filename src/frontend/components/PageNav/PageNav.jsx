@@ -4,15 +4,19 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import ExploreIcon from "@mui/icons-material/Explore";
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
+
 import "./PageNav.css";
+
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+
 import { useLoginContext } from "../../contexts/index";
-import { defaultProfile } from "../../utils/constants";
 
 export const PageNav = () => {
   const [active, setActive] = useState("HOME");
-  const { userDetails } = useLoginContext();
+  const {
+    userDetails: { username, avatar },
+  } = useLoginContext();
   return (
     <div className="page-nav">
       <NavLink onClick={() => setActive("HOME")} to="/">
@@ -37,14 +41,11 @@ export const PageNav = () => {
         )}
       </NavLink>
 
-      <NavLink
-        onClick={() => setActive("PROFILE")}
-        to={`/profile/${userDetails.username}`}
-      >
+      <NavLink onClick={() => setActive("PROFILE")} to={`/profile/${username}`}>
         <img
           className="nav__profile-avatar"
-          src={userDetails.avatar || defaultProfile}
-          alt=""
+          src={avatar}
+          alt="profile avatar"
         />
       </NavLink>
     </div>

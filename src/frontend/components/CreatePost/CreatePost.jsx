@@ -1,59 +1,49 @@
 import AddIcon from "@mui/icons-material/Add";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
-import "./CreatePost.css";
 import { useState } from "react";
+
 import { useFeedContext, useLoginContext } from "../../contexts/index";
 import { createPostService } from "../../services/services";
+import "./CreatePost.css";
+import { getBase64 } from "../../utils/helper";
 
 export const CreatePost = () => {
   const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({ caption: "" });
-  const [previewImg, setPreviewImg] = useState("");
+  const [formData, setFormData] = useState({ previewImg: "", caption: "" });
+  const { previewImg, caption } = formData;
+
   const { dispatch } = useFeedContext();
-  const { userDetails } = useLoginContext();
+  const {
+    userDetails: { fullName },
+  } = useLoginContext();
+
   const fileUploadHandler = (e) => {
     const file = e.target.files[0];
-    getBase64(file)
-      .then((base64) => {
-        setFormData((prev) => ({ ...prev, img: JSON.stringify(base64) }));
-        localStorage.setItem("fileBase64", base64);
-      })
-      .then(() => {
-        let dataImage = localStorage.getItem("fileBase64");
-        // let previewImg = document.getElementById("img");
-        // previewImg.src = dataImage;
-        setPreviewImg(dataImage);
-      });
-  };
-  const getBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-      reader.readAsDataURL(file);
+    getBase64(file).then((base64) => {
+      setFormData((prev) => ({
+        ...prev,
+        previewImg: base64,
+      }));
     });
   };
+
   const createPostHandler = async (e) => {
     e.preventDefault();
     if (previewImg === "") {
-      alert("Please select an image");
-      return;
+      return alert("Please select an image");
     }
 
-    const img = localStorage.getItem("fileBase64");
     try {
       const response = await createPostService({
-        postImage: img,
-        content: formData.caption,
-        fullName: userDetails.fullName,
+        postImage: previewImg,
+        content: caption,
+        fullName,
         comments: [],
       });
       dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
 
       setShowModal(false);
-      localStorage.removeItem("fileBase64");
-      setPreviewImg("");
-      setFormData({ caption: "" });
+      setFormData({ previewImg: "", caption: "" });
     } catch (e) {
       console.error(e);
     }
@@ -88,7 +78,7 @@ export const CreatePost = () => {
           <textarea
             className="caption-container"
             placeholder="Caption"
-            value={formData.caption}
+            value={caption}
             onChange={(e) =>
               setFormData((prev) => ({ ...prev, caption: e.target.value }))
             }
