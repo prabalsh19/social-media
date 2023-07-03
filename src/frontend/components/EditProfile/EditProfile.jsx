@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 import "./EditProfile.css";
@@ -6,6 +5,7 @@ import { useState } from "react";
 import { AvatarOptions } from "../AvatarOptions/AvatarOptions";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 import { defaultProfile } from "../../utils/constants";
+import { editUserService } from "../../services/services";
 export const EditProfile = ({ setShowEditProfileModal }) => {
   const { userDetails, setUserDetails } = useLoginContext();
   const [previewAvatar, setPreviewAvatar] = useState(
@@ -21,17 +21,9 @@ export const EditProfile = ({ setShowEditProfileModal }) => {
   };
   const editProfileHandler = async (e) => {
     e.preventDefault();
-    const encodedToken = localStorage.getItem("encodedToken");
+
     try {
-      const response = await axios.post(
-        "/api/users/edit",
-        {
-          userData: formData,
-        },
-        {
-          headers: { authorization: encodedToken },
-        }
-      );
+      const response = await editUserService(formData);
 
       setUserDetails(response.data.user);
       setShowEditProfileModal(false);

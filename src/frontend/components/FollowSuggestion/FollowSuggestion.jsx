@@ -1,9 +1,9 @@
-import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 import "./FollowSuggestion.css";
 import { NavLink } from "react-router-dom";
+import { followUserService, getUsersService } from "../../services/services";
 
 export const FollowSuggestion = () => {
   const { userDetails, setUserDetails } = useLoginContext();
@@ -11,7 +11,7 @@ export const FollowSuggestion = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("/api/users");
+        const response = await getUsersService();
         setUsers(response.data.users);
       } catch (e) {
         console.error(e);
@@ -24,16 +24,8 @@ export const FollowSuggestion = () => {
       user.username !== userDetails.username
   );
   const followHandler = async (_id) => {
-    const encodedToken = localStorage.getItem("encodedToken");
     try {
-      const response = await axios.post(
-        `/api/users/follow/${_id}`,
-        {},
-        {
-          headers: { authorization: encodedToken },
-        }
-      );
-
+      const response = await followUserService(_id);
       setUserDetails(response.data.user);
     } catch (e) {
       console.error(e);
@@ -45,7 +37,7 @@ export const FollowSuggestion = () => {
         <div className="suggested-users">
           {suggestedUsers.slice(0, 6).map((user) => (
             <div key={user._id} className="suggested-user">
-              <NavLink to={`/profile/${user._id}`}>
+              <NavLink to={`/profile/${user.username}`}>
                 <img className="profile-avatar" src={user.avatar} alt="" />
               </NavLink>
               <span className="suggested-user__full-name">{user.fullName}</span>

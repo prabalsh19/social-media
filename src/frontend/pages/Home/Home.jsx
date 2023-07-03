@@ -18,7 +18,7 @@ export const Home = () => {
           {posts.length === 0 ? (
             <h1>No Posts</h1>
           ) : (
-            posts.map((post) => <PostCard key={post.id} {...post} />)
+            posts.map((post) => <PostCard key={post._id} {...post} />)
           )}
         </div>
       </div>

@@ -4,25 +4,18 @@ import "./Welcome.css";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 import { FollowSuggestion } from "../../components/FollowSuggestion/FollowSuggestion";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { editUserService } from "../../services/services";
 export const Welcome = () => {
   const { userDetails, setUserDetails } = useLoginContext();
 
   const [previewAvatar, setPreviewAvatar] = useState();
   const navigate = useNavigate();
   const getStartedHandler = async () => {
-    const encodedToken = localStorage.getItem("encodedToken");
     try {
-      const response = await axios.post(
-        "/api/users/edit",
-        {
-          userData: { ...userDetails, avatar: previewAvatar },
-        },
-        {
-          headers: { authorization: encodedToken },
-        }
-      );
-
+      const response = await editUserService({
+        ...userDetails,
+        avatar: previewAvatar,
+      });
       setUserDetails(response.data.user);
       navigate("/");
     } catch (e) {

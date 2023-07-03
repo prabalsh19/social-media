@@ -5,7 +5,6 @@ import CommentIcon from "@mui/icons-material/Comment";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import "./PostCard.css";
-import axios from "axios";
 import { useFeedContext } from "../../contexts/FeedContext/feedContext";
 import { useState } from "react";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
@@ -14,9 +13,14 @@ import { EditPost } from "../EditPost/EditPost";
 import { PostMenuOptions } from "../PostMenuOptions/PostMenuOptions";
 import { defaultProfile } from "../../utils/constants";
 import { Link } from "react-router-dom";
+import {
+  addToBookmarkService,
+  dislikePostService,
+  likePostService,
+  removeFromBookmarkService,
+} from "../../services/services";
 export const PostCard = ({
   _id,
-  id,
   fullName,
   postImage,
   username,
@@ -47,15 +51,9 @@ export const PostCard = ({
 
   const likeHandler = async (_id) => {
     setLiked(true);
-    const encodedToken = localStorage.getItem("encodedToken");
+
     try {
-      const response = await axios.post(
-        `/api/posts/like/${_id}`,
-        {},
-        {
-          headers: { authorization: encodedToken },
-        }
-      );
+      const response = await likePostService(_id);
       dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
     } catch (e) {
       console.error(e);
@@ -63,15 +61,9 @@ export const PostCard = ({
   };
   const dislikeHandler = async (_id) => {
     setLiked(false);
-    const encodedToken = localStorage.getItem("encodedToken");
+
     try {
-      const response = await axios.post(
-        `/api/posts/dislike/${_id}`,
-        {},
-        {
-          headers: { authorization: encodedToken },
-        }
-      );
+      const response = await dislikePostService(_id);
       dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
     } catch (e) {
       console.error(e);
@@ -82,13 +74,9 @@ export const PostCard = ({
   };
   const addToBookmarkHandler = async () => {
     setIsBookmarked(true);
-    const encodedToken = localStorage.getItem("encodedToken");
+
     try {
-      const response = await axios.post(
-        `/api/users/bookmark/${_id}`,
-        {},
-        { headers: { authorization: encodedToken } }
-      );
+      const response = await addToBookmarkService(_id);
 
       setBookmarks(response.data.bookmarks);
     } catch (e) {
@@ -97,13 +85,9 @@ export const PostCard = ({
   };
   const removeFromBookmarkHandler = async () => {
     setIsBookmarked(false);
-    const encodedToken = localStorage.getItem("encodedToken");
+
     try {
-      const response = await axios.post(
-        `/api/users/remove-bookmark/${_id}`,
-        {},
-        { headers: { authorization: encodedToken } }
-      );
+      const response = await removeFromBookmarkService(_id);
       setBookmarks(response.data.bookmarks);
     } catch (e) {
       console.error(e);
@@ -127,7 +111,7 @@ export const PostCard = ({
       <div className="post-card">
         <div className="post-info">
           <div className="post-info-subcontainer">
-            <Link to={`profile/${_id}`}>
+            <Link to={`profile/${username}`}>
               <img
                 className="profile-avatar"
                 src={
@@ -145,19 +129,21 @@ export const PostCard = ({
           </div>
           <div className="post-info-subcontainer">
             <small>{longFormatDate}</small>
-            <span
-              className="menu-icon"
-              onClick={() => setShowMenuOptions(!showMenuOptions)}
-            >
-              <MoreHorizIcon />
-              {showMenuOptions && (
-                <PostMenuOptions
-                  _id={_id}
-                  username={username}
-                  setShowEditPostModal={setShowEditPostModal}
-                />
-              )}
-            </span>
+            {userDetails.username === username && (
+              <span
+                className="menu-icon"
+                onClick={() => setShowMenuOptions(!showMenuOptions)}
+              >
+                <MoreHorizIcon />
+                {showMenuOptions && (
+                  <PostMenuOptions
+                    _id={_id}
+                    username={username}
+                    setShowEditPostModal={setShowEditPostModal}
+                  />
+                )}
+              </span>
+            )}
           </div>
         </div>
         <div className="post-text">

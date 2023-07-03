@@ -1,6 +1,6 @@
-import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { useLoginContext } from "../LoginContext/loginContext";
+import { getPostsService } from "../../services/services";
 
 const FeedContext = createContext();
 
@@ -31,7 +31,7 @@ export const FeedContextProvider = ({ children }) => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("/api/posts");
+        const response = await getPostsService();
         dispatch({ type: "INITIAL_FEED_FETCH", payload: response.data.posts });
       } catch (e) {
         console.error(e);

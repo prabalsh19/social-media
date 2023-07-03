@@ -1,24 +1,20 @@
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Login.css";
-import axios from "axios";
 import { useState } from "react";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+import { loginService } from "../../services/services";
 
 export const Login = () => {
   const [loginData, setLoginData] = useState({ username: "", password: "" });
-  const { username, password } = loginData;
 
   const { setIsLoggedIn, setUserDetails } = useLoginContext();
 
   const navigate = useNavigate();
-  const location = useLocation();
+
   const loginHandler = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/auth/login", {
-        username,
-        password,
-      });
+      const response = await loginService(loginData);
 
       setIsLoggedIn(true);
       setUserDetails(response.data.foundUser);
@@ -28,9 +24,7 @@ export const Login = () => {
         JSON.stringify(response.data.foundUser)
       );
 
-      location.state
-        ? navigate(location?.state?.location?.pathname)
-        : navigate("/");
+      navigate("/");
     } catch (e) {
       console.error(e);
     }

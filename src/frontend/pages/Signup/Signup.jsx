@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Signup.css";
-import axios from "axios";
+import { signUpService } from "../../services/services";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 
 export const Signup = () => {
@@ -29,10 +29,8 @@ export const Signup = () => {
       return;
     }
     try {
-      const response = await axios.post("/api/auth/signup", {
-        ...signupData,
-        fullName: `${signupData.firstName} ${signupData.lastName}`,
-      });
+      const response = await signUpService(signupData);
+      console.log(response);
       setIsLoggedIn(true);
       setUserDetails(response.data.createdUser);
       localStorage.setItem("encodedToken", response.data.encodedToken);

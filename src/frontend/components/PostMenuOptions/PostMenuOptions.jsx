@@ -1,16 +1,17 @@
-import axios from "axios";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 import "./PostMenuOptions.css";
 import { useFeedContext } from "../../contexts/FeedContext/feedContext";
+import {
+  deletePostService,
+  followUserService,
+  unfollowUserService,
+} from "../../services/services";
 export const PostMenuOptions = ({ _id, setShowEditPostModal, username }) => {
   const { userDetails, setUserDetails } = useLoginContext();
   const { dispatch } = useFeedContext();
   const deletePostHandler = async (_id) => {
-    const encodedToken = localStorage.getItem("encodedToken");
     try {
-      const response = await axios.delete(`/api/posts/${_id}`, {
-        headers: { authorization: encodedToken },
-      });
+      const response = await deletePostService(_id);
 
       dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
     } catch (e) {
@@ -20,33 +21,19 @@ export const PostMenuOptions = ({ _id, setShowEditPostModal, username }) => {
   const userDoesFollow = userDetails.following.some(
     (following) => following.username === username
   );
+  console.log(userDetails);
   const unfollowHandler = async (_id) => {
-    const encodedToken = localStorage.getItem("encodedToken");
-
     try {
-      const response = await axios.post(
-        `/api/users/unfollow/${_id}`,
-        {},
-        {
-          headers: { authorization: encodedToken },
-        }
-      );
-
+      const response = await unfollowUserService(_id);
+      console.log(response);
       setUserDetails(response.data.user);
     } catch (e) {
       console.error(e);
     }
   };
   const followHandler = async (_id) => {
-    const encodedToken = localStorage.getItem("encodedToken");
     try {
-      const response = await axios.post(
-        `/api/users/follow/${_id}`,
-        {},
-        {
-          headers: { authorization: encodedToken },
-        }
-      );
+      const response = await followUserService(_id);
       setUserDetails(response.data.user);
     } catch (e) {
       console.error(e);

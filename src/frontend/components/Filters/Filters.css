@@ -8,6 +8,7 @@
   color: var(--faded-primary-color);
   cursor: pointer;
   box-shadow: var(--box-shadow);
+  z-index: 98;
 }
 .activeCategory {
   color: white;

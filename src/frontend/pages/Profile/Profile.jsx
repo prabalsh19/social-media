@@ -4,9 +4,13 @@ import { PostCard } from "../../components/Post/PostCard";
 import { useFeedContext } from "../../contexts/FeedContext/feedContext";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 import "./Profile.css";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import { defaultProfile } from "../../utils/constants";
+import {
+  followUserService,
+  getUserService,
+  unfollowUserService,
+} from "../../services/services";
 
 export const Profile = () => {
   const { userDetails, setIsLoggedIn, setUserDetails } = useLoginContext();
@@ -26,46 +30,31 @@ export const Profile = () => {
     setUserDetails({});
     localStorage.clear();
   };
-  const { _id } = useParams();
+  const { username } = useParams();
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(`/api/users/${_id}`);
+        const response = await getUserService(username);
         setSelectedUser(response.data.user);
       } catch (e) {
         console.error(e);
       }
     })();
-  }, [_id, userDetails]);
+  }, [username, userDetails]);
   const userFollowsThisProfile = userDetails.following.some(
     (user) => user.username === selectedUser.username
   );
   const followHandler = async (_id) => {
-    const encodedToken = localStorage.getItem("encodedToken");
     try {
-      const response = await axios.post(
-        `/api/users/follow/${_id}`,
-        {},
-        {
-          headers: { authorization: encodedToken },
-        }
-      );
+      const response = await followUserService(_id);
       setUserDetails(response.data.user);
     } catch (e) {
       console.error(e);
     }
   };
   const unfollowHandler = async (_id) => {
-    const encodedToken = localStorage.getItem("encodedToken");
-
     try {
-      const response = await axios.post(
-        `/api/users/unfollow/${_id}`,
-        {},
-        {
-          headers: { authorization: encodedToken },
-        }
-      );
+      const response = await unfollowUserService(_id);
       setUserDetails(response.data.user);
     } catch (e) {
       console.error(e);
@@ -104,14 +93,14 @@ export const Profile = () => {
             ) : userFollowsThisProfile ? (
               <button
                 className="profile-edit-btn"
-                onClick={() => unfollowHandler(_id)}
+                onClick={() => unfollowHandler(selectedUser._id)}
               >
                 Unfollow
               </button>
             ) : (
               <button
                 className="profile-edit-btn"
-                onClick={() => followHandler(_id)}
+                onClick={() => followHandler(selectedUser._id)}
               >
                 Follow
               </button>

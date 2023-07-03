@@ -2,9 +2,9 @@ import AddIcon from "@mui/icons-material/Add";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import "./CreatePost.css";
 import { useState } from "react";
-import axios from "axios";
 import { useFeedContext } from "../../contexts/FeedContext/feedContext";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+import { createPostService } from "../../services/services";
 
 export const CreatePost = () => {
   const [showModal, setShowModal] = useState(false);
@@ -40,25 +40,15 @@ export const CreatePost = () => {
       alert("Please select an image");
       return;
     }
-    const encodedToken = localStorage.getItem("encodedToken");
+
     const img = localStorage.getItem("fileBase64");
     try {
-      const response = await axios.post(
-        "/api/posts",
-        {
-          postData: {
-            postImage: img,
-            content: formData.caption,
-            fullName: userDetails.fullName,
-            comments: [],
-          },
-        },
-        {
-          headers: {
-            authorization: encodedToken,
-          },
-        }
-      );
+      const response = await createPostService({
+        postImage: img,
+        content: formData.caption,
+        fullName: userDetails.fullName,
+        comments: [],
+      });
       dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
 
       setShowModal(false);

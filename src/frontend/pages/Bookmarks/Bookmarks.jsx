@@ -1,20 +1,17 @@
 import { useEffect } from "react";
 import "./Bookmarks.css";
-import axios from "axios";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 import { PostCard } from "../../components/Post/PostCard";
+import { getAllBookmarksService } from "../../services/services";
 
 export const Bookmarks = () => {
   const { bookmarks, setBookmarks } = useLoginContext();
 
   useEffect(() => {
-    const encodedToken = localStorage.getItem("encodedToken");
     try {
       (async () => {
         try {
-          const response = await axios.get("/api/users/bookmark/", {
-            headers: { authorization: encodedToken },
-          });
+          const response = await getAllBookmarksService();
           setBookmarks(response.data.bookmarks);
         } catch (e) {
           console.error(e);

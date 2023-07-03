@@ -1,9 +1,9 @@
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 
 import { useState } from "react";
-import axios from "axios";
 import { useFeedContext } from "../../contexts/FeedContext/feedContext";
 import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+import { editPostService } from "../../services/services";
 
 export const EditPost = ({ _id, showEditPostModal, setShowEditPostModal }) => {
   const { state, dispatch } = useFeedContext();
@@ -37,25 +37,14 @@ export const EditPost = ({ _id, showEditPostModal, setShowEditPostModal }) => {
       alert("Please select an image");
       return;
     }
-    const encodedToken = localStorage.getItem("encodedToken");
 
     try {
-      const response = await axios.post(
-        `/api/posts/edit/${_id}`,
-        {
-          postData: {
-            postImage: previewImg,
-            content: formData.caption,
-            fullName: userDetails.fullName,
-            comments: [],
-          },
-        },
-        {
-          headers: {
-            authorization: encodedToken,
-          },
-        }
-      );
+      const response = await editPostService(_id, {
+        postImage: previewImg,
+        content: formData.caption,
+        fullName: userDetails.fullName,
+        comments: [],
+      });
       dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
 
       localStorage.removeItem("fileBase64");

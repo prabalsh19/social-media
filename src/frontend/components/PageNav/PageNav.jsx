@@ -39,7 +39,7 @@ export const PageNav = () => {
 
       <NavLink
         onClick={() => setActive("PROFILE")}
-        to={`/profile/${userDetails._id}`}
+        to={`/profile/${userDetails.username}`}
       >
         <img
           className="nav__profile-avatar"
