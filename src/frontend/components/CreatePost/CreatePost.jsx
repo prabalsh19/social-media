@@ -2,8 +2,7 @@ import AddIcon from "@mui/icons-material/Add";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import "./CreatePost.css";
 import { useState } from "react";
-import { useFeedContext } from "../../contexts/FeedContext/feedContext";
-import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+import { useFeedContext, useLoginContext } from "../../contexts/index";
 import { createPostService } from "../../services/services";
 
 export const CreatePost = () => {

@@ -1,5 +1,5 @@
 import "./Filters.css";
-import { useFeedContext } from "../../contexts/FeedContext/feedContext";
+import { useFeedContext } from "../../contexts/index";
 export const Filters = () => {
   const {
     state: { selectedCategory },

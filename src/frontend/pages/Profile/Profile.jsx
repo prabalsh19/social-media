@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { EditProfile } from "../../components/EditProfile/EditProfile";
-import { PostCard } from "../../components/Post/PostCard";
-import { useFeedContext } from "../../contexts/FeedContext/feedContext";
-import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+import { EditProfile, PostCard } from "../../components/index";
+import { useFeedContext, useLoginContext } from "../../contexts/index";
 import "./Profile.css";
 import { useParams } from "react-router-dom";
 import { defaultProfile } from "../../utils/constants";

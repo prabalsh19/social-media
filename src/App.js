@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
-import { Nav } from "./frontend/components/Nav/Nav";
-import { PageNav } from "./frontend/components/PageNav/PageNav";
+import { Nav, PageNav } from "./frontend/components/index";
 import { ScrollRestoration } from "react-router-dom";
 function App() {
   return (

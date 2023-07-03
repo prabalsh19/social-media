@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import "./Bookmarks.css";
-import { useLoginContext } from "../../contexts/LoginContext/loginContext";
-import { PostCard } from "../../components/Post/PostCard";
+import { useLoginContext } from "../../contexts/index";
+
 import { getAllBookmarksService } from "../../services/services";
+import { PostCard } from "../../components/index";
 
 export const Bookmarks = () => {
   const { bookmarks, setBookmarks } = useLoginContext();

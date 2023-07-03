@@ -7,7 +7,7 @@ import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
 import "./PageNav.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+import { useLoginContext } from "../../contexts/index";
 import { defaultProfile } from "../../utils/constants";
 
 export const PageNav = () => {

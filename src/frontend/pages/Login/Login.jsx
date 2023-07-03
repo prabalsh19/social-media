@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useState } from "react";
-import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+import { useLoginContext } from "../../contexts/index";
 import { loginService } from "../../services/services";
 
 export const Login = () => {

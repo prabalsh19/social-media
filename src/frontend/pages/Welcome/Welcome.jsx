@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { AvatarOptions } from "../../components/AvatarOptions/AvatarOptions";
+import { AvatarOptions, FollowSuggestion } from "../../components/index";
 import "./Welcome.css";
-import { useLoginContext } from "../../contexts/LoginContext/loginContext";
-import { FollowSuggestion } from "../../components/FollowSuggestion/FollowSuggestion";
+import { useLoginContext } from "../../contexts/index";
 import { useNavigate } from "react-router-dom";
 import { editUserService } from "../../services/services";
 export const Welcome = () => {

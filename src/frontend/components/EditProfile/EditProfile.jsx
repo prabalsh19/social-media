@@ -1,8 +1,8 @@
-import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+import { useLoginContext } from "../../contexts/index";
 import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 import "./EditProfile.css";
 import { useState } from "react";
-import { AvatarOptions } from "../AvatarOptions/AvatarOptions";
+import { AvatarOptions } from "../index";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 import { defaultProfile } from "../../utils/constants";
 import { editUserService } from "../../services/services";

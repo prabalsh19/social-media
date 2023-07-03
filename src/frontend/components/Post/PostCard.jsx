@@ -5,12 +5,9 @@ import CommentIcon from "@mui/icons-material/Comment";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import "./PostCard.css";
-import { useFeedContext } from "../../contexts/FeedContext/feedContext";
+import { useFeedContext, useLoginContext } from "../../contexts/index";
 import { useState } from "react";
-import { useLoginContext } from "../../contexts/LoginContext/loginContext";
-import { CommentModal } from "../CommentModal/CommentModal";
-import { EditPost } from "../EditPost/EditPost";
-import { PostMenuOptions } from "../PostMenuOptions/PostMenuOptions";
+import { CommentModal, EditPost, PostMenuOptions } from "../index";
 import { defaultProfile } from "../../utils/constants";
 import { Link } from "react-router-dom";
 import {

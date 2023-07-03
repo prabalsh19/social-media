@@ -1,11 +1,11 @@
-import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+import { useLoginContext, useFeedContext } from "../../contexts/index";
 import "./PostMenuOptions.css";
-import { useFeedContext } from "../../contexts/FeedContext/feedContext";
 import {
   deletePostService,
   followUserService,
   unfollowUserService,
 } from "../../services/services";
+
 export const PostMenuOptions = ({ _id, setShowEditPostModal, username }) => {
   const { userDetails, setUserDetails } = useLoginContext();
   const { dispatch } = useFeedContext();

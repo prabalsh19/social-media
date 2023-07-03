@@ -1,5 +1,5 @@
-import { PostCard } from "../../components/Post/PostCard";
-import { useFeedContext } from "../../contexts/FeedContext/feedContext";
+import { PostCard } from "../../components/index";
+import { useFeedContext } from "../../contexts/index";
 import "./Explore.css";
 export const Explore = () => {
   const {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useFeedContext } from "../../contexts/FeedContext/feedContext";
+import { useFeedContext } from "../../contexts/index";
 import "./CommentModal.css";
 // import { useLoginContext } from "../../contexts/LoginContext/loginContext";
 export const CommentModal = ({ _id, setShowCommentModal }) => {

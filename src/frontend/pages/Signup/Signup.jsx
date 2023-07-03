@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Signup.css";
 import { signUpService } from "../../services/services";
-import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+import { useLoginContext } from "../../contexts/index";
 
 export const Signup = () => {
   const [signupData, setSignupData] = useState({

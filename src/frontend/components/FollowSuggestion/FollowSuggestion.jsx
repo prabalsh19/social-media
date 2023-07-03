@@ -1,6 +1,5 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+import { useEffect, useState } from "react";
+import { useLoginContext } from "../../contexts/index";
 import "./FollowSuggestion.css";
 import { NavLink } from "react-router-dom";
 import { followUserService, getUsersService } from "../../services/services";

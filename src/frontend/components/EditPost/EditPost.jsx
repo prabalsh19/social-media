@@ -1,8 +1,6 @@
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
-
 import { useState } from "react";
-import { useFeedContext } from "../../contexts/FeedContext/feedContext";
-import { useLoginContext } from "../../contexts/LoginContext/loginContext";
+import { useFeedContext, useLoginContext } from "../../contexts/index";
 import { editPostService } from "../../services/services";
 
 export const EditPost = ({ _id, showEditPostModal, setShowEditPostModal }) => {

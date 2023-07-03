@@ -4,18 +4,22 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home } from "./frontend/pages/Home/Home";
-import { makeServer } from "./server";
-import { Mockbee } from "./frontend/pages/Mockbee/Mockbee";
-import { Login } from "./frontend/pages/Login/Login";
+import {
+  Home,
+  Mockbee,
+  Login,
+  Bookmarks,
+  Profile,
+  Explore,
+  Signup,
+  Welcome,
+} from "./frontend/pages/index";
 import { Auth } from "./frontend/Auth/Auth";
-import { Bookmarks } from "./frontend/pages/Bookmarks/Bookmarks";
-import { Profile } from "./frontend/pages/Profile/Profile";
-import { Explore } from "./frontend/pages/Explore/Explore";
-import { Signup } from "./frontend/pages/Signup/Signup";
-import { LoginContextProvider } from "./frontend/contexts/LoginContext/loginContext";
-import { FeedContextProvider } from "./frontend/contexts/FeedContext/feedContext";
-import { Welcome } from "./frontend/pages/Welcome/Welcome";
+import { makeServer } from "./server";
+import {
+  LoginContextProvider,
+  FeedContextProvider,
+} from "./frontend/contexts/index";
 
 // Call make Server
 makeServer();
