@@ -41,6 +41,7 @@ export const EditProfile = ({ setShowEditProfileModal }) => {
 
       setPreview((prev) => ({ ...prev, [e.target.name]: base64 }));
     });
+    e.target.value = "";
   };
 
   return (

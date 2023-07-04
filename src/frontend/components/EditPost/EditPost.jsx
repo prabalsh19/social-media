@@ -21,6 +21,7 @@ export const EditPost = ({ _id, showEditPostModal, setShowEditPostModal }) => {
     getBase64(file).then((base64) => {
       setFormData((prev) => ({ ...prev, previewImg: base64 }));
     });
+    e.target.value = "";
   };
 
   const editPostHandler = async (e) => {

@@ -1,6 +1,8 @@
 import AddIcon from "@mui/icons-material/Add";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import { useState } from "react";
+import EmojiPicker from "emoji-picker-react";
 
 import { useFeedContext, useLoginContext } from "../../contexts/index";
 import { createPostService } from "../../services/services";
@@ -9,6 +11,7 @@ import { getBase64 } from "../../utils/helper";
 
 export const CreatePost = () => {
   const [showModal, setShowModal] = useState(false);
+  const [showEmojiSelector, setShowEmojiSelector] = useState(false);
   const [formData, setFormData] = useState({ previewImg: "", caption: "" });
   const { previewImg, caption } = formData;
 
@@ -18,13 +21,16 @@ export const CreatePost = () => {
   } = useLoginContext();
 
   const fileUploadHandler = (e) => {
-    const file = e.target.files[0];
-    getBase64(file).then((base64) => {
-      setFormData((prev) => ({
-        ...prev,
-        previewImg: base64,
-      }));
-    });
+    const file = e?.target?.files[0];
+    console.log(file);
+    file &&
+      getBase64(file).then((base64) => {
+        setFormData((prev) => ({
+          ...prev,
+          previewImg: base64,
+        }));
+      });
+    e.target.value = "";
   };
 
   const createPostHandler = async (e) => {
@@ -47,6 +53,9 @@ export const CreatePost = () => {
     } catch (e) {
       console.error(e);
     }
+  };
+  const onEmojiClick = ({ emoji }) => {
+    setFormData((prev) => ({ ...prev, caption: prev.caption + emoji }));
   };
   return (
     <>
@@ -83,6 +92,29 @@ export const CreatePost = () => {
               setFormData((prev) => ({ ...prev, caption: e.target.value }))
             }
           ></textarea>
+          <div className="emoji-wrapper">
+            <span
+              className="selected-emoji"
+              onClick={() => setShowEmojiSelector((prev) => !prev)}
+            >
+              <InsertEmoticonIcon />
+            </span>
+            {showEmojiSelector && (
+              <span className="emoji-picker">
+                <EmojiPicker
+                  onEmojiClick={onEmojiClick}
+                  emojiStyle="google"
+                  skinTonesDisabled="false"
+                  height="20rem"
+                  width="20rem"
+                  previewConfig={{
+                    showPreview: false,
+                  }}
+                  size="20"
+                />
+              </span>
+            )}
+          </div>
           <button className="post-btn">POST</button>
         </div>
       </form>
