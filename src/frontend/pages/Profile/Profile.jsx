@@ -23,6 +23,7 @@ export const Profile = () => {
   const dateStr = formatDate(selectedUser?.createdAt);
 
   const { username } = useParams();
+  console.log(username);
   useEffect(() => {
     (async () => {
       try {
