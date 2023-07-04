@@ -98,7 +98,7 @@ export const PostCard = ({
       <div className="post-card">
         <div className="post-info">
           <div className="post-info-subcontainer">
-            <Link to={`profile/${username}`}>
+            <Link to={`/profile/${username}`}>
               <img
                 className="profile-avatar"
                 src={loggedInUserPost ? userDetails.avatar : avatar}
