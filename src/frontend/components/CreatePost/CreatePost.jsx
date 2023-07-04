@@ -61,7 +61,10 @@ export const CreatePost = () => {
     <>
       <div
         className="overlay"
-        onClick={() => setShowModal(false)}
+        onClick={() => {
+          setShowModal(false);
+          setFormData({ previewImg: "", caption: "" });
+        }}
         id={showModal ? "" : "hide"}
       ></div>
       <form onSubmit={createPostHandler}>
@@ -102,6 +105,7 @@ export const CreatePost = () => {
             {showEmojiSelector && (
               <span className="emoji-picker">
                 <EmojiPicker
+                  lazyLoadEmojis
                   onEmojiClick={onEmojiClick}
                   emojiStyle="google"
                   skinTonesDisabled="false"
