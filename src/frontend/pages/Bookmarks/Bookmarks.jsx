@@ -1,13 +1,16 @@
 import "./Bookmarks.css";
-import { useLoginContext } from "../../contexts/index";
+import { useFeedContext, useLoginContext } from "../../contexts/index";
 
 import { PostCard } from "../../components/index";
 
 export const Bookmarks = () => {
+  const { bookmarks: bookmarksList } = useLoginContext();
   const {
-    userDetails: { bookmarks },
-  } = useLoginContext();
-
+    state: { posts },
+  } = useFeedContext();
+  const bookmarks = posts.filter((post) =>
+    bookmarksList.some((bookmark) => bookmark._id === post._id)
+  );
   return (
     <>
       {bookmarks.length > 0 ? (

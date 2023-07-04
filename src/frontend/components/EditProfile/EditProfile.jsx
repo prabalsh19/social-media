@@ -31,7 +31,6 @@ export const EditProfile = ({ setShowEditProfileModal }) => {
   const fileUploadHandler = (e) => {
     const file = e.target.files[0];
     getBase64(file).then((base64) => {
-      localStorage.setItem("avatar", base64);
       setFormData((prev) => ({ ...prev, avatar: base64 }));
       setPreviewAvatar(base64);
     });

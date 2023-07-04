@@ -21,9 +21,8 @@ export const getAllUsersHandler = function () {
 
 export const getUserHandler = function (schema, request) {
   const userId = request.params.userId;
-
   try {
-    const user = schema.users.findBy({ username: userId }).attrs;
+    const user = schema.users.findBy({ _id: userId }).attrs;
     return new Response(200, {}, { user });
   } catch (error) {
     return new Response(
@@ -57,15 +56,15 @@ export const editUserHandler = function (schema, request) {
       );
     }
     const { userData } = JSON.parse(request.requestBody);
-    console.log(
-      userData && userData.username && userData.username !== user.username
-    );
+    console.log(userData && userData.username && userData.username !== user.username);
     if (userData && userData.username && userData.username !== user.username) {
       return new Response(
         404,
         {},
         {
-          errors: ["Username cannot be changed"],
+          errors: [
+            "Username cannot be changed",
+          ],
         }
       );
     }
@@ -103,7 +102,7 @@ export const getBookmarkPostsHandler = function (schema, request) {
         }
       );
     }
-    return new Response(200, {}, { user });
+    return new Response(200, {}, { bookmarks: user.bookmarks });
   } catch (error) {
     return new Response(
       500,
@@ -145,19 +144,12 @@ export const bookmarkPostHandler = function (schema, request) {
         { errors: ["This Post is already bookmarked"] }
       );
     }
-    user.bookmarks.push({
-      _id: post._id,
-      username: post.username,
-      content: post.content,
-      createdAt: post.createdAt,
-      updatedAt: post.updatedAt,
-      ...post,
-    });
+    user.bookmarks.push({ _id:post._id, username: post.username, content: post.content, createdAt: post.createdAt, updatedAt: post.updatedAt });
     // this.db.users.update(
     //   { _id: user._id },
     //   { ...user, updatedAt: formatDate() }
     // );
-    return new Response(200, {}, { user });
+    return new Response(200, {}, { bookmarks: user.bookmarks });
   } catch (error) {
     return new Response(
       500,
@@ -203,7 +195,7 @@ export const removePostFromBookmarkHandler = function (schema, request) {
       { _id: user._id },
       { ...user, updatedAt: formatDate() }
     );
-    return new Response(200, {}, { user });
+    return new Response(200, {}, { bookmarks: user.bookmarks });
   } catch (error) {
     return new Response(
       500,
@@ -242,7 +234,9 @@ export const followUserHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["You cannot follow yourself"],
+          errors: [
+            "You cannot follow yourself"
+          ],
         }
       );
     }

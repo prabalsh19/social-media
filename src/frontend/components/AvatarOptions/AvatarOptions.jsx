@@ -14,7 +14,6 @@ const avatarImg = [
 ];
 export const AvatarOptions = ({ setFormData, setPreviewAvatar }) => {
   const setAvatar = (avatar) => {
-    localStorage.setItem("avatar", avatar);
     setFormData((prev) => ({ ...prev, avatar: avatar }));
     setPreviewAvatar(avatar);
   };

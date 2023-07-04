@@ -35,7 +35,7 @@ export const PostCard = ({
   const [showEditPostModal, setShowEditPostModal] = useState(false);
 
   const { dispatch } = useFeedContext();
-  const { userDetails, setUserDetails } = useLoginContext();
+  const { userDetails, bookmarks, setBookmarks } = useLoginContext();
 
   const dateStr = formatDate(createdAt);
 
@@ -43,12 +43,11 @@ export const PostCard = ({
     (user) => user.username === userDetails.username
   );
 
-  const isBookmarked = userDetails.bookmarks.find(
-    (bookmark) => bookmark._id === _id
-  );
+  const isBookmarked = bookmarks.find((bookmark) => bookmark._id === _id);
   const likeHandler = async (_id) => {
     try {
       const response = await likePostService(_id);
+
       dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
     } catch (e) {
       console.error(e);
@@ -57,6 +56,7 @@ export const PostCard = ({
   const dislikeHandler = async (_id) => {
     try {
       const response = await dislikePostService(_id);
+
       dispatch({ type: "UPDATE_FEED", payload: response.data.posts });
     } catch (e) {
       console.error(e);
@@ -66,7 +66,8 @@ export const PostCard = ({
   const addToBookmarkHandler = async () => {
     try {
       const response = await addToBookmarkService(_id);
-      setUserDetails(response.data.user);
+
+      setBookmarks(response.data.bookmarks);
     } catch (e) {
       console.error(e);
     }
@@ -74,7 +75,7 @@ export const PostCard = ({
   const removeFromBookmarkHandler = async () => {
     try {
       const response = await removeFromBookmarkService(_id);
-      setUserDetails(response.data.user);
+      setBookmarks(response.data.bookmarks);
     } catch (e) {
       console.error(e);
     }
