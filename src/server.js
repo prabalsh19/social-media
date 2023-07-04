@@ -87,6 +87,9 @@ export function makeServer({ environment = "development" } = {}) {
         "/users/unfollow/:followUserId/",
         unfollowUserHandler.bind(this)
       );
+      this.passthrough();
+      this.passthrough("https://tenor.googleapis.com/v2/*", ["get"]);
+      // this.get("/**", this.passthrough);
     },
   });
 }

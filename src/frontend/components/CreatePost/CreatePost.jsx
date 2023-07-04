@@ -132,7 +132,10 @@ export const CreatePost = () => {
               </span>
               {showGifSelector && (
                 <span className="emoji-picker">
-                  <GifPicker />
+                  <GifPicker
+                    setFormData={setFormData}
+                    setShowGifSelector={setShowGifSelector}
+                  />
                 </span>
               )}
             </div>

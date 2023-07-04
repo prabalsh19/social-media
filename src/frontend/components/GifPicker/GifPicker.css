@@ -3,6 +3,7 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  gap: 10px;
   position: relative;
   background-color: var(--primary-color);
   padding: 10px;
@@ -18,4 +19,31 @@
   padding: 10px;
   transition: all 0.2s ease-in-out;
   outline: 1px solid var(--secondary-color);
+}
+.gifs-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow-y: auto;
+  gap: 10px;
+}
+.gifs-container > .gif {
+  width: 8rem;
+  height: 9rem;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+}
+.gifs-container > .gif:hover {
+  transform: scale(1.03);
+  transition: 0.3s;
+}
+.close-btn {
+  cursor: pointer;
+  position: relative;
+  left: 18rem;
+  width: max-content;
+  height: 1.5rem;
+  width: 1.5rem;
+  padding: 1px;
+  border-radius: 50%;
 }
