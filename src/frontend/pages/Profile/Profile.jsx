@@ -10,7 +10,7 @@ import {
 } from "../../services/services";
 import "./Profile.css";
 import { formatDate } from "../../utils/helper";
-import { backdrop } from "../../utils/constants";
+import { defaultBackdrop } from "../../utils/constants";
 
 export const Profile = () => {
   const [showEditProfileModal, setShowEditProfileModal] = useState(false);
@@ -23,7 +23,7 @@ export const Profile = () => {
   const dateStr = formatDate(selectedUser?.createdAt);
 
   const { username } = useParams();
-  console.log(username);
+
   useEffect(() => {
     (async () => {
       try {
@@ -70,7 +70,7 @@ export const Profile = () => {
           )}
           <img
             className="profile_backdrop"
-            src={backdrop}
+            src={selectedUser.backdrop || defaultBackdrop}
             alt="profile backdrop"
           />
           <div className="profile-action">

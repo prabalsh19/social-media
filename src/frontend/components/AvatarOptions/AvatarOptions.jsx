@@ -12,10 +12,10 @@ const avatarImg = [
 
   "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
 ];
-export const AvatarOptions = ({ setFormData, setPreviewAvatar }) => {
+export const AvatarOptions = ({ setFormData, setPreview }) => {
   const setAvatar = (avatar) => {
     setFormData((prev) => ({ ...prev, avatar: avatar }));
-    setPreviewAvatar(avatar);
+    setPreview((prev) => ({ ...prev, avatar }));
   };
 
   return (

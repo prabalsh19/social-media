@@ -5,9 +5,15 @@ import { useState } from "react";
 import { AvatarOptions } from "../index";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 import { editUserService } from "../../services/services";
+import { getBase64 } from "../../utils/helper";
+import { defaultBackdrop } from "../../utils/constants";
 export const EditProfile = ({ setShowEditProfileModal }) => {
   const { userDetails, setUserDetails } = useLoginContext();
-  const [previewAvatar, setPreviewAvatar] = useState(userDetails.avatar);
+  const [preview, setPreview] = useState({
+    avatar: userDetails.avatar,
+    backdrop: userDetails.backdrop,
+  });
+
   const [formData, setFormData] = useState(userDetails);
   const [showAvatars, setShowAvatars] = useState(false);
   const updateBio = (e) => {
@@ -31,19 +37,12 @@ export const EditProfile = ({ setShowEditProfileModal }) => {
   const fileUploadHandler = (e) => {
     const file = e.target.files[0];
     getBase64(file).then((base64) => {
-      setFormData((prev) => ({ ...prev, avatar: base64 }));
-      setPreviewAvatar(base64);
+      setFormData((prev) => ({ ...prev, [e.target.name]: base64 }));
+
+      setPreview((prev) => ({ ...prev, [e.target.name]: base64 }));
     });
   };
 
-  const getBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-      reader.readAsDataURL(file);
-    });
-  };
   return (
     <>
       <div
@@ -56,14 +55,14 @@ export const EditProfile = ({ setShowEditProfileModal }) => {
           <div className="edit-profile-actions">
             <div className="edit-profile-action">
               <label>Avatar</label>
-              <img className="profile-avatar" src={previewAvatar} alt="" />
+              <img className="profile-avatar" src={preview.avatar} alt="" />
 
               <label name="update-avatar">
                 <AddToPhotosIcon
                   sx={{ color: "var(--secondary-color)", cursor: "pointer" }}
                 />
                 <input
-                  name="update-avatar"
+                  name="avatar"
                   type="file"
                   accept="image"
                   onChange={(e) => fileUploadHandler(e)}
@@ -81,10 +80,29 @@ export const EditProfile = ({ setShowEditProfileModal }) => {
                 {showAvatars && (
                   <AvatarOptions
                     setFormData={setFormData}
-                    setPreviewAvatar={setPreviewAvatar}
+                    setPreview={setPreview}
                   />
                 )}
               </span>
+            </div>
+            <div className="edit-profile-action">
+              <label htmlFor="">Backdrop</label>
+              <img
+                className="profile-avatar"
+                src={preview.backdrop || defaultBackdrop}
+                alt=""
+              />
+              <label name="update-avatar">
+                <AddToPhotosIcon
+                  sx={{ color: "var(--secondary-color)", cursor: "pointer" }}
+                />
+                <input
+                  name="backdrop"
+                  type="file"
+                  accept="image"
+                  onChange={(e) => fileUploadHandler(e)}
+                />
+              </label>
             </div>
             <div className="edit-profile-action">
               <label>Name</label>

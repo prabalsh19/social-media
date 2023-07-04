@@ -30,7 +30,7 @@ a {
 .main {
   min-height: calc(100vh - 5rem);
 }
-@media screen and (width>800px) {
+@media screen and (width>660px) {
   .main {
     max-width: 1000px;
     margin-inline: auto;

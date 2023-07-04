@@ -8,14 +8,14 @@ import "./Welcome.css";
 
 export const Welcome = () => {
   const { userDetails, setUserDetails } = useLoginContext();
-  const [previewAvatar, setPreviewAvatar] = useState();
+  const [preview, setPreview] = useState({ avatar: "" });
 
   const navigate = useNavigate();
 
   const getStartedHandler = async () => {
     try {
       const response = await editUserService({
-        avatar: previewAvatar,
+        avatar: preview.avatar,
       });
       setUserDetails(response.data.user);
       navigate("/");
@@ -30,23 +30,20 @@ export const Welcome = () => {
       <div>
         <span id="choose-avatar">
           Choose your favourite avatar
-          <AvatarOptions
-            setFormData={setUserDetails}
-            setPreviewAvatar={setPreviewAvatar}
-          />
+          <AvatarOptions setFormData={setUserDetails} setPreview={setPreview} />
         </span>
       </div>
-      {previewAvatar && (
+      {preview.avatar && (
         <div className="avatar-preview">
           <b>Your Avatar</b>
-          <img src={previewAvatar} className="profile-avatar" alt="" />
+          <img src={preview.avatar} className="profile-avatar" alt="" />
         </div>
       )}
       <span id="choose-avatar">Last Step Follow Atleast 3 People</span>
       <FollowSuggestion />
 
       <button
-        disabled={userDetails.following.length < 3 || !previewAvatar}
+        disabled={userDetails.following.length < 3 || !preview.avatar}
         className="get-started-btn"
         onClick={getStartedHandler}
       >

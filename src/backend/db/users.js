@@ -16,6 +16,7 @@ export const users = [
     portfolio: "",
     avatar:
       "https://pbs.twimg.com/profile_images/1629104062225604613/ptbp3IWg_400x400.jpg",
+    backdrop: "",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     followers: [],
