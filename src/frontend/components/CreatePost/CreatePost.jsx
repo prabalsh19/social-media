@@ -3,15 +3,18 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import { useState } from "react";
 import EmojiPicker from "emoji-picker-react";
+import GifIcon from "@mui/icons-material/Gif";
 
 import { useFeedContext, useLoginContext } from "../../contexts/index";
 import { createPostService } from "../../services/services";
 import "./CreatePost.css";
 import { getBase64 } from "../../utils/helper";
+import { GifPicker } from "../GifPicker/GifPicker";
 
 export const CreatePost = () => {
   const [showModal, setShowModal] = useState(false);
   const [showEmojiSelector, setShowEmojiSelector] = useState(false);
+  const [showGifSelector, setShowGifSelector] = useState(false);
   const [formData, setFormData] = useState({ previewImg: "", caption: "" });
   const { previewImg, caption } = formData;
 
@@ -95,29 +98,44 @@ export const CreatePost = () => {
               setFormData((prev) => ({ ...prev, caption: e.target.value }))
             }
           ></textarea>
-          <div className="emoji-wrapper">
-            <span
-              className="selected-emoji"
-              onClick={() => setShowEmojiSelector((prev) => !prev)}
-            >
-              <InsertEmoticonIcon />
-            </span>
-            {showEmojiSelector && (
-              <span className="emoji-picker">
-                <EmojiPicker
-                  lazyLoadEmojis
-                  onEmojiClick={onEmojiClick}
-                  emojiStyle="google"
-                  skinTonesDisabled="false"
-                  height="20rem"
-                  width="20rem"
-                  previewConfig={{
-                    showPreview: false,
-                  }}
-                  size="20"
-                />
+          <div className="flex-row">
+            <div className="emoji-wrapper">
+              <span
+                className="selected-emoji"
+                onClick={() => setShowEmojiSelector((prev) => !prev)}
+              >
+                <InsertEmoticonIcon />
               </span>
-            )}
+              {showEmojiSelector && (
+                <span className="emoji-picker">
+                  <EmojiPicker
+                    lazyLoadEmojis
+                    onEmojiClick={onEmojiClick}
+                    emojiStyle="google"
+                    skinTonesDisabled="false"
+                    height="20rem"
+                    width="20rem"
+                    previewConfig={{
+                      showPreview: false,
+                    }}
+                    size="20"
+                  />
+                </span>
+              )}
+            </div>
+            <div className="gif-wrapper">
+              <span
+                className="selected-gif"
+                onClick={() => setShowGifSelector((prev) => !prev)}
+              >
+                <GifIcon fontSize="large" />
+              </span>
+              {showGifSelector && (
+                <span className="emoji-picker">
+                  <GifPicker />
+                </span>
+              )}
+            </div>
           </div>
           <button className="post-btn">POST</button>
         </div>

@@ -69,18 +69,26 @@ input[type="file"] {
   background-color: var(--primary-color);
   cursor: pointer;
 }
-.selected-emoji {
+.selected-emoji,
+.selected-gif {
   cursor: pointer;
 }
-.emoji-wrapper {
+.emoji-wrapper,
+.gif-wrapper {
   position: relative;
 }
 .emoji-picker {
   position: absolute;
   top: -3rem;
+  z-index: 100;
 }
 .EmojiPickerReact {
   --epr-emoji-size: 25px;
+}
+.flex-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 @media screen and (width<660px) {
   .emoji-wrapper {
