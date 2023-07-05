@@ -7,7 +7,7 @@ const FeedContext = createContext();
 const reducer = (state, action) => {
   switch (action.type) {
     case "INITIAL_FEED_FETCH": {
-      return { ...state, posts: action.payload };
+      return { ...state, posts: action.payload, infinitePost: action.payload };
     }
     case "CHANGE_SORT": {
       return {
@@ -21,11 +21,26 @@ const reducer = (state, action) => {
         posts: action.payload,
       };
     }
+    case "UPDATE_INFINTIE_POST": {
+      return {
+        ...state,
+        posts: state.posts.concat(
+          state.posts.filter(({ username }) => username !== action.payload)
+        ),
+      };
+    }
+    case "RESET_INFINITE_POST": {
+      return {
+        ...state,
+        posts: state.posts.filter(
+          (item, index) => state.posts.indexOf(item) === index
+        ),
+      };
+    }
     default:
       return state;
   }
 };
-
 export const FeedContextProvider = ({ children }) => {
   const { userDetails } = useLoginContext();
   useEffect(() => {
@@ -41,6 +56,7 @@ export const FeedContextProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, {
     posts: [],
+
     selectedCategory: "LATEST",
   });
 

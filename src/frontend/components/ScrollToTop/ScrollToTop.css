@@ -1,0 +1,16 @@
+.scroll-to-top {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 1rem;
+  animation-delay: 2s;
+}
+.arrow {
+  display: inline-block;
+  transform: rotate(-90deg);
+  margin-right: 10px;
+}

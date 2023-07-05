@@ -1,3 +1,7 @@
 .explore-container {
   padding: 0 1rem 4rem;
 }
+.spinner {
+  display: block;
+  text-align: center;
+}

@@ -42,7 +42,7 @@ export const PostCard = ({
   const isLiked = likedBy.find(
     (user) => user.username === userDetails.username
   );
-
+  console.log(likedBy);
   const isBookmarked = bookmarks.find((bookmark) => bookmark._id === _id);
   const likeHandler = async (_id) => {
     try {
