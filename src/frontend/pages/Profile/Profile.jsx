@@ -15,7 +15,8 @@ import { defaultBackdrop } from "../../utils/constants";
 export const Profile = () => {
   const [showEditProfileModal, setShowEditProfileModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState({});
-  const { userDetails, setIsLoggedIn, setUserDetails } = useLoginContext();
+  const { userDetails, setIsLoggedIn, setUserDetails, setBookmarks } =
+    useLoginContext();
   const {
     state: { posts },
   } = useFeedContext();
@@ -38,6 +39,7 @@ export const Profile = () => {
   const logoutHandler = () => {
     setIsLoggedIn(false);
     setUserDetails({});
+    setBookmarks([]);
     localStorage.clear();
   };
   const followHandler = async (_id) => {
