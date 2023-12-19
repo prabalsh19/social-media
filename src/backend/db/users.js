@@ -15,7 +15,7 @@ export const users = [
     bio: "Trust me, not everyone matters!",
     portfolio: "",
     avatar:
-      "https://pbs.twimg.com/profile_images/1629104062225604613/ptbp3IWg_400x400.jpg",
+      "https://pbs.twimg.com/profile_images/1733425848529936384/srSyfcDi_400x400.jpg",
     backdrop: "",
     createdAt: formatDate(),
     updatedAt: formatDate(),
