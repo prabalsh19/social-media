@@ -12,7 +12,7 @@ export const users = [
     username: 'prabalsh19',
     password: '123456789',
     fullName: 'Prabal Sharma',
-    bio: 'Trust me, not everyone matters!',
+    bio: 'Nature lover',
     portfolio: '',
     avatar:
       'https://images.unsplash.com/photo-1744472920600-790d7dfe22ce?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
